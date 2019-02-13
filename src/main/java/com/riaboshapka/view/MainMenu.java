@@ -27,7 +27,7 @@ public class MainMenu {
                     adminMenu.show();
                     break;
                 case "2":
-                    System.out.println("SHOW CLIENT MENU");
+                    clientMenu.show();
                     break;
                 case "0":
                     isRunning = false;
