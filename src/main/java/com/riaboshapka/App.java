@@ -10,6 +10,7 @@ public class App {
     public static void main(String[] args) throws IOException {
         MainMenu menu = new MainMenu();
         menu.showMenu();
+        System.out.println("Create testMaster branch for try to complete \"pull request\" for checking");
     }
 
 }
