@@ -1,5 +1,6 @@
 package com.riaboshapka.view;
 
+import com.riaboshapka.dao.impl.DataBank;
 import com.riaboshapka.domain.Client;
 import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.OrderService;
@@ -8,7 +9,6 @@ import com.riaboshapka.services.impl.OrderServiceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class ClientMenu {
                     createOrder();
                     break;
                 case "2":
-                    System.out.println("Show the order list");
+                    showOrder();
                     break;
                 case "3":
                     deleteOrder();
@@ -41,6 +41,10 @@ public class ClientMenu {
 
     }
 
+    private void showOrder() {
+        System.out.println(DataBank.orderMap.values());
+    }
+
     private void showMenu() {
         System.out.println("1. Create an order list");
         System.out.println("2. Get the order list");
@@ -49,31 +53,20 @@ public class ClientMenu {
         System.out.println("0. Exit");
     }
 
-    private Client createClient() throws IOException {
-        System.out.println("Input client's name: ");
-        String name = br.readLine();
-        System.out.println("Input client's surname: ");
-        String surName = br.readLine();
-        System.out.println("Input client's phone number: ");
-        String phoneNumber = br.readLine();
-        Client client = new Client(name, surName, phoneNumber);
-        return client;
-    }
 
-    private Product createProduct() throws IOException {
-        System.out.println("Input product's name: ");
-        String productName = br.readLine();
-        System.out.println("Input product's price: ");
-        BigDecimal productPrice = new BigDecimal(Integer.parseInt(br.readLine()));
-        Product product = new Product(productName, productPrice);
+    private Product createProduct(int productNumber) {
+        Product product = DataBank.productMap.get(productNumber);
         return product;
     }
 
     private List<Product> createProductsList() throws IOException {
         boolean isAdding = true;
         List<Product> productList = new ArrayList<>();
+        showProductList();
         while (isAdding) {
-            productList.add(createProduct());
+            System.out.println("Choose product to add an order: ");
+            int productNumber = Integer.parseInt(br.readLine());
+            productList.add(createProduct(productNumber));
             System.out.println("Do you want to add next product?");
             System.out.println("Press \"y\" or \"n\" ");
             if (br.readLine().equals("n")) {
@@ -85,9 +78,19 @@ public class ClientMenu {
     }
 
     private void createOrder() throws IOException {
-        Client client = createClient();
+        System.out.println("Enter clients ID: ");
+        int clientID = Integer.parseInt(br.readLine());
+        Client client = DataBank.clientMap.get(clientID);
         List<Product> productsList = createProductsList();
         orderService.createOrder(client, productsList);
+    }
+
+    private void showProductList() {
+        System.out.println("List of products: ");
+        for (int i = 0; i < DataBank.productMap.size(); i++) {
+            String count = String.valueOf(i);
+            System.out.println(count + DataBank.productMap.get(i));
+        }
     }
 
     private void deleteOrder() {

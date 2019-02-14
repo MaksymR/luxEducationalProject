@@ -16,7 +16,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void createOrder(Client client, List<Product> products) {
         Order order = new Order(client, products);
-        boolean result = orderDao.saveOrder(client, products);
+        boolean result = orderDao.saveOrder(order);
         if (result) {
             System.out.println("An order list is created: " + order);
         }

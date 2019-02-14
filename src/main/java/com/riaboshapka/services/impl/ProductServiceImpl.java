@@ -12,8 +12,8 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao = new ProductDaoImpl();
 
     @Override
-    public void createProduct(String name, BigDecimal price) {
-        Product product = new Product(name, price);
+    public void createProduct(Long productId, String name, BigDecimal price) {
+        Product product = new Product(productId, name, price);
         boolean result = productDao.saveProduct(product);
         if (result) {
             System.out.println("Product saved: " + product);

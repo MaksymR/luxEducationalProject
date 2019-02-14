@@ -7,6 +7,7 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public boolean saveClient(Client client) {
         System.out.println("Saving... Please wait");
+        DataBank.clientMap.put(DataBank.clientCount++, client);
         return true;
     }
 }

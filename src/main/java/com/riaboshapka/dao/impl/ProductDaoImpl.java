@@ -7,6 +7,7 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public boolean saveProduct(Product product) {
         System.out.println("Saving product... Please wait");
+        DataBank.productMap.put(DataBank.productCount++, product);
         return true;
     }
 

@@ -8,10 +8,10 @@ import java.util.List;
 public interface OrderService {
 
     /**
-     * create order for client
+     * create an order
      *
-     * @param client for OrderDao
-     * @param products for OrderDao
+     * @param client   for create the order
+     * @param products for create the order
      */
     void createOrder(Client client, List<Product> products);
 

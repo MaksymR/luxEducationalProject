@@ -1,15 +1,13 @@
 package com.riaboshapka.dao.impl;
 
 import com.riaboshapka.dao.OrderDao;
-import com.riaboshapka.domain.Client;
-import com.riaboshapka.domain.Product;
-
-import java.util.List;
+import com.riaboshapka.domain.Order;
 
 public class OrderDaoImpl implements OrderDao {
     @Override
-    public boolean saveOrder(Client client, List<Product> products) {
+    public boolean saveOrder(Order order) {
         System.out.println("An order list is creating... Please wait!");
+        DataBank.orderMap.put(DataBank.orderCount++, order);
         return true;
     }
 

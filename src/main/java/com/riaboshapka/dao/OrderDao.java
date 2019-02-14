@@ -1,18 +1,16 @@
 package com.riaboshapka.dao;
 
-import com.riaboshapka.domain.Client;
-import com.riaboshapka.domain.Product;
-
-import java.util.List;
+import com.riaboshapka.domain.Order;
 
 public interface OrderDao {
 
     /**
-     * @param client from DB
-     * @param products from DB
-     * @return true if order is created and false in other case
+     * save order
+     *
+     * @param order for save
+     * @return true if order is saved and false in other case
      */
-    boolean saveOrder(Client client, List<Product> products);
+    boolean saveOrder(Order order);
 
     /**
      * @return true if order is deleted and false in other case

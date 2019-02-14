@@ -63,21 +63,25 @@ public class AdminMenu {
     }
 
     private void createClient() throws IOException {
+        System.out.println("Input client's id: ");
+        long clientsId = Long.parseLong(br.readLine());
         System.out.println("Input client's name: ");
         String name = br.readLine();
         System.out.println("Input client's surname: ");
         String surName = br.readLine();
         System.out.println("Input client's phone number: ");
         String phoneNumber = br.readLine();
-        clientService.createClient(name, surName, phoneNumber);
+        clientService.createClient(clientsId, name, surName, phoneNumber);
     }
 
     private void createProduct() throws IOException {
+        System.out.println("Input product's id: ");
+        Long prouductId = Long.parseLong(br.readLine());
         System.out.println("Input product's name: ");
         String productName = br.readLine();
         System.out.println("Input product's price: ");
         BigDecimal productPrice = new BigDecimal(Integer.parseInt(br.readLine()));
-        productService.createProduct(productName, productPrice);
+        productService.createProduct(prouductId, productName, productPrice);
     }
 
     private void deleteProduct() {
