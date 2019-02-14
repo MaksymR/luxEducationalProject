@@ -6,14 +6,18 @@ import java.math.BigDecimal;
 
 public interface ProductService {
 
-    /*
-    * create product
-    * */
+    /**
+     * create product
+     *
+     * @param name for ProductDao
+     * @param price for ProductDao
+     */
     void createProduct(String name, BigDecimal price);
 
-    /*
-    * delete product
-    * */
+
+    /**
+     * delete product
+     */
     void deleteProduct();
 
 }

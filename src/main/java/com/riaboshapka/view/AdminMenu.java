@@ -45,7 +45,7 @@ public class AdminMenu {
                 case "0":
                     return;
                 default:
-                    System.out.println("Wrong imput!!!");
+                    System.out.println("Wrong input!!!");
             }
         }
     }
