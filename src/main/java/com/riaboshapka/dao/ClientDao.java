@@ -4,10 +4,10 @@ import com.riaboshapka.domain.Client;
 
 public interface ClientDao {
 
-    /*
-     * create documentation
-     *
-     * */
+    /**
+     * @param client for DB
+     * @return true if client is created and false in other case
+     */
     boolean saveClient(Client client);
 
 }
