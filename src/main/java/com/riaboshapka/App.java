@@ -10,6 +10,7 @@ public class App {
     public static void main(String[] args) throws IOException {
         MainMenu menu = new MainMenu();
         menu.showMenu();
+        System.out.println("classwork_15_02_2019");
     }
 
 }
