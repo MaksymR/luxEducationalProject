@@ -2,12 +2,13 @@ package com.riaboshapka.dao;
 
 import com.riaboshapka.domain.Client;
 
+import java.util.List;
+
 public interface ClientDao {
 
-    /**
-     * @param client for DB
-     * @return true if client is created and false in other case
-     */
     boolean saveClient(Client client);
+
+    // для зчитування
+    List<Client> getAllClients();
 
 }

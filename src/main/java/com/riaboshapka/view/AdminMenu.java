@@ -1,22 +1,23 @@
 package com.riaboshapka.view;
 
+import com.riaboshapka.domain.Client;
 import com.riaboshapka.services.ClientService;
-import com.riaboshapka.services.ProductService;
-import com.riaboshapka.services.impl.ClientServiceImpl;
-import com.riaboshapka.services.impl.ProductServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.math.BigDecimal;
 
 public class AdminMenu {
 
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private ClientService clientService = new ClientServiceImpl();
-    private ProductService productService = new ProductServiceImpl();
+    private final BufferedReader br;
+    private final ClientService clientService;
+
+    public AdminMenu(BufferedReader br, ClientService clientService) {
+        this.br = br;
+        this.clientService = clientService;
+    }
 
     public void show() throws IOException {
+
 
         while (true) {
             showMenu();
@@ -27,27 +28,31 @@ public class AdminMenu {
                 case "2":
                     System.out.println("Modify client");
                     break;
-                case "3":
-                    System.out.println("Remove client");
-                    break;
                 case "4":
-                    System.out.println("List all clients");
+                    System.out.println("All clients:");
+                    showAllClients();
                     break;
-                case "5":
-                    createProduct();
-                    break;
-                case "6":
-                    deleteProduct();
-                    break;
-                case "7":
-                    System.out.println("List all products");
-                    break;
-                case "0":
+                case "E":
                     return;
                 default:
-                    System.out.println("Wrong input!!!");
+                    System.out.println("wrong input!!!");
             }
         }
+
+    }
+
+    private void createClient() throws IOException {
+        System.out.println("Input name: ");
+        String name = br.readLine();
+        System.out.println("Input surname: ");
+        String surname = br.readLine();
+        System.out.println("Input age:");
+        int age = readInteger();
+        System.out.println("Input phone number: ");
+        String phoneNumber = br.readLine();
+        System.out.println("Input email");
+        String email = br.readLine();
+        clientService.createClient(name, surname, age, phoneNumber, email);
     }
 
     private void showMenu() {
@@ -55,33 +60,35 @@ public class AdminMenu {
         System.out.println("2. Modify client");
         System.out.println("3. Remove client");
         System.out.println("4. List all clients");
-        System.out.println("5. Create product");
-        System.out.println("6. Delete product");
-        System.out.println("7. List all products");
-        System.out.println("9. Return");
-        System.out.println("0. Exit");
+        System.out.println();
+
+        System.out.println("5. Add product");
+        System.out.println("6. Modify product");
+        System.out.println("7. Remove product");
+        System.out.println("8. List all product");
+        System.out.println();
+        // все робиться по id шнику для ордерів для адміна
+        System.out.println("9. Modify order");
+        System.out.println("10. Remove order");
+        System.out.println("11. List all order");
+
+        System.out.println("R. Return");
+        System.out.println("E. Exit");
     }
 
-    private void createClient() throws IOException {
-        System.out.println("Input client's name: ");
-        String name = br.readLine();
-        System.out.println("Input client's surname: ");
-        String surName = br.readLine();
-        System.out.println("Input client's phone number: ");
-        String phoneNumber = br.readLine();
-        clientService.createClient(name, surName, phoneNumber);
+    private int readInteger() {
+        try {
+            return Integer.parseInt(br.readLine());
+        } catch (IOException | NumberFormatException ex) {
+            System.out.println("Input number please!!");
+            // рекурсивний виклик
+            return readInteger();
+        }
     }
 
-    private void createProduct() throws IOException {
-        System.out.println("Input product's name: ");
-        String productName = br.readLine();
-        System.out.println("Input product's price: ");
-        BigDecimal productPrice = new BigDecimal(Integer.parseInt(br.readLine()));
-        productService.createProduct(productName, productPrice);
+    private void showAllClients() {
+        for (Client client : clientService.getAllClients()) {
+            System.out.println(client);
+        }
     }
-
-    private void deleteProduct() {
-        productService.deleteProduct();
-    }
-
 }
