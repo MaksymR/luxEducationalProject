@@ -20,4 +20,12 @@ public interface ValidationService {
      */
     void validateEmail(String email) throws BusinessException;
 
+    /**
+     * validate phone has to have 10 digit and operators code (067, 097, 050)
+     *
+     * @param phone
+     * @throws BusinessException
+     */
+    void validatePhone(String phone) throws BusinessException;
+
 }

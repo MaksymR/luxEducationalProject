@@ -23,6 +23,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void createClient(String name, String surname, String phone) {
         // call the larger method for passing the duplicate of logic
+        // email temporarily doesn't work
         this.createClient(name, surname, 0, phone, null);
     }
 
@@ -31,7 +32,11 @@ public class ClientServiceImpl implements ClientService {
         try {
             // If the age is not correct, then nothing else is created
             validationService.validateAge(age);
-            validationService.validateEmail(email);
+            // ignore email ("null") if registration is from ClientMenu
+            if (email != null) {
+                validationService.validateEmail(email);
+            }
+            validationService.validatePhone(phone);
             Client client = new Client(name, surname, age, email, phone);
             boolean result = clientDao.saveClient(client);
             if (result) {

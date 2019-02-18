@@ -9,14 +9,35 @@ public class ValidationServiceImpl implements ValidationService {
     @Override
     public void validateAge(int age) throws BusinessException {
         if (age < 0 || age > 200) {
-            throw new BusinessException("Incorrect age!!!");
+            throw new BusinessException("Incorrect age!!! Enter age from 0 to 200 years");
         }
     }
 
     @Override
     public void validateEmail(String email) throws BusinessException {
+        if (email.equals(null)) {
+            return;
+        }
         if (!email.contains("@") || !email.contains(".com")) {
             throw new BusinessException("Incorrect email!!! Email has to consist \"@\" and \".com\"");
         }
     }
+
+    @Override
+    public void validatePhone(String phone) throws BusinessException {
+        String mobileCode = phone.substring(0, 3);
+        System.out.println(mobileCode);
+        String KyivStarCode1 = "067";
+        String KyivStarCode2 = "097";
+        String VodafoneCode1 = "050";
+        if (phone.length() != 10) {
+            throw new BusinessException("Incorect length of phone!!!" +
+                    " The length of phone has to have 10 digits");
+        }
+        if (!mobileCode.equals(KyivStarCode1) && !mobileCode.equals(KyivStarCode2) && !mobileCode.equals(VodafoneCode1)) {
+            throw new BusinessException("Incorect mobile operator!!!" +
+                    " Mobile operator has to have next code \"067\" or \"097\" or \"050\"");
+        }
+    }
+
 }
