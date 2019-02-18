@@ -11,7 +11,7 @@ import java.util.Map;
 public class ClientDaoImpl implements ClientDao {
 
     // обєкт є тільки в одному екземплярі
-    private static ClientDao clientDao = new ClientDaoImpl();
+    private static ClientDao clientDao;
 
     private Map<Long, Client> map = new HashMap<>();
     private static long generator = 0;
@@ -40,6 +40,9 @@ public class ClientDaoImpl implements ClientDao {
 
     // фабричні методи щоб створюовати приватний конструктор повертає силку тільки на один обєкт
     public static ClientDao getInstance() {
+        if (clientDao == null) {
+            clientDao = new ClientDaoImpl();
+        }
         return clientDao;
     }
 }
