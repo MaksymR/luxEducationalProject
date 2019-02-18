@@ -20,7 +20,7 @@ public class App {
     public static void main(String[] args) throws IOException {
 
         // configured all necessary dependencies for this application
-        // реалізація депендесі інжекшн
+        // realizing of the dependency injection
         ClientDao clientDao = ClientDaoImpl.getInstance();
         ValidationService validationService = new ValidationServiceImpl();
         ClientService clientService = new ClientServiceImpl(clientDao, validationService);

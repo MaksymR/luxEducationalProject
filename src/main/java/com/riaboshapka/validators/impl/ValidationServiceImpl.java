@@ -15,7 +15,9 @@ public class ValidationServiceImpl implements ValidationService {
 
     @Override
     public void validateEmail(String email) throws BusinessException {
-        if (email.equals(null)) {
+        // this check for method createClient(String name, String surname, String phone)
+        // from ClientServiceImpl because there is a default value "null" of an email in the method's body
+        if (email.contains(null)) {
             return;
         }
         if (!email.contains("@") || !email.contains(".com")) {

@@ -67,7 +67,7 @@ public class AdminMenu {
         System.out.println("7. Remove product");
         System.out.println("8. List all product");
         System.out.println();
-        // все робиться по id шнику для ордерів для адміна
+        // everything does by id for the orders for the admin
         System.out.println("9. Modify order");
         System.out.println("10. Remove order");
         System.out.println("11. List all order");

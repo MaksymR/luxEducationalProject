@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    // депенденсі інжекшн
-    // це залежність для конструктора
+    // the dependency injection
+    // this dependency for constructor
     private ClientDao clientDao;
     private ValidationService validationService;
 
@@ -37,6 +37,15 @@ public class ClientServiceImpl implements ClientService {
                 validationService.validateEmail(email);
             }
             validationService.validatePhone(phone);
+            List<Client> tempListOfClients = getAllClients();
+            for (int i = 0; i < tempListOfClients.size(); i++) {
+                Client tempClient = tempListOfClients.get(i);
+                String checkedPhone = tempClient.getPhone();
+                if (checkedPhone.equals(phone)) {
+                    System.out.println("Сan not register because this phone number is already registered");
+                    return;
+                }
+            }
             Client client = new Client(name, surname, age, email, phone);
             boolean result = clientDao.saveClient(client);
             if (result) {
