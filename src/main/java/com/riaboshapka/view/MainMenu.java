@@ -3,10 +3,9 @@ package com.riaboshapka.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-// менюшка спілкування і виведеня інфи адміну і клуєнту
+// the menu of communication and the output of the information to the administrator and the client
 public class MainMenu {
 
-    //        ввод інфи і інтерпереируєт в символи отримує запроси від клієнта
     private final BufferedReader br;
     private final AdminMenu adminMenu;
     private final ClientMenu clientMenu;

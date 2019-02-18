@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ClientServiceImpl implements ClientService {
 
-    // депенденсі інжекшин
+    // депенденсі інжекшн
     // це залежність для конструктора
     private ClientDao clientDao;
     private ValidationService validationService;
@@ -22,15 +22,16 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void createClient(String name, String surname, String phone) {
-        // викликаємо більший метод для попердження дупліката логіки
+        // call the larger method for passing the duplicate of logic
         this.createClient(name, surname, 0, phone, null);
     }
 
     @Override
     public void createClient(String name, String surname, int age, String phone, String email) {
         try {
+            // If the age is not correct, then nothing else is created
             validationService.validateAge(age);
-            // якщо вік не вірного формату то більше нічого не створюється
+            validationService.validateEmail(email);
             Client client = new Client(name, surname, age, email, phone);
             boolean result = clientDao.saveClient(client);
             if (result) {
@@ -41,7 +42,7 @@ public class ClientServiceImpl implements ClientService {
         }
     }
 
-    // отримуємо копію клієнтів
+    // get a copy of the clients
     @Override
     public List<Client> getAllClients() {
         return clientDao.getAllClients();

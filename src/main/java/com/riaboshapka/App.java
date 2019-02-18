@@ -16,10 +16,10 @@ import java.io.InputStreamReader;
 
 public class App {
 
-    // точка запуска всього додатка
+    // a start point of the entire application
     public static void main(String[] args) throws IOException {
 
-        // сконфігували всі залежності необхідні для цього роботи додотка
+        // configured all necessary dependencies for this application
         // реалізація депендесі інжекшн
         ClientDao clientDao = ClientDaoImpl.getInstance();
         ValidationService validationService = new ValidationServiceImpl();

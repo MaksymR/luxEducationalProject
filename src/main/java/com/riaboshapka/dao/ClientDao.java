@@ -8,7 +8,11 @@ public interface ClientDao {
 
     boolean saveClient(Client client);
 
-    // для зчитування
+    /**
+     * to read a list of all clients
+     *
+     * @return list of all clients
+     */
     List<Client> getAllClients();
 
 }

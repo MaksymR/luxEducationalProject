@@ -2,7 +2,7 @@ package com.riaboshapka.domain;
 
 public class Client {
 
-    private long id; // уніфікальний ідентифікатор
+    private long id; // unique identifier
     private String name;
     private String surname;
     private int age;

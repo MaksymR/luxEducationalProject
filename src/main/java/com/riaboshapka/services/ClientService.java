@@ -6,23 +6,33 @@ import java.util.List;
 
 public interface ClientService {
 
-    /* Д/З
-     * add documentation
-     * описуємо що робить даний метод
-     * */
+    /**
+     * create client
+     *
+     * @param name of client
+     * @param surname of client
+     * @param phone of client
+     */
     void createClient(String name, String surname, String phone);
 
-    // мотод для адміна котрий вводить повну інфу
+    /**
+     * a method for the admin which introduces the full information
+     *
+     * @param name of client
+     * @param surname of client
+     * @param age of client
+     * @param phone of client
+     * @param email of client
+     */
     void createClient(String name, String surname, int age, String phone, String email);
 
 
     List<Client> getAllClients();
 
 
-    /*
-     * Д/З
-     * описуємо що робить метод
-     * */
+    /**
+     * delete client
+     */
     void deleteClient();
 
 
