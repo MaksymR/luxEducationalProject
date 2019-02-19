@@ -33,9 +33,10 @@ public class ClientServiceImpl implements ClientService {
             // If the age is not correct, then nothing else is created
             validationService.validateAge(age);
             // ignore email ("null") if registration is from ClientMenu
-            if (email != null) {
-                validationService.validateEmail(email);
-            }
+//            if (email != null) {
+//                validationService.validateEmail(email);
+//            }
+            validationService.validateEmail(email);
             validationService.validatePhone(phone);
             List<Client> tempListOfClients = getAllClients();
             for (int i = 0; i < tempListOfClients.size(); i++) {
