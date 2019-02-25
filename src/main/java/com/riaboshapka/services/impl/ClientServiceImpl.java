@@ -90,7 +90,15 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public void deleteClient() {
-
+    public void deleteClient(long id) {
+        for (Client client : getAllClients()) {
+            long clientId = client.getId();
+            if (clientId == id) {
+                boolean result = clientDao.deleteClient(id);
+                if (result) {
+                    System.out.println("Client Deleted: " + client);
+                }
+            }
+        }
     }
 }

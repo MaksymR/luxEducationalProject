@@ -28,6 +28,9 @@ public class AdminMenu {
                 case "2":
                     modifyClient();
                     break;
+                case "3":
+                    deleteClient();
+                    break;
                 case "4":
                     System.out.println("All clients:");
                     showAllClients();
@@ -39,6 +42,20 @@ public class AdminMenu {
             }
         }
 
+    }
+
+    private void deleteClient() {
+        System.out.println("Input client's ID for remove: ");
+        long id = readLongId();
+        for (Client client : clientService.getAllClients()) {
+            long tempId = client.getId();
+            if(tempId == id) {
+                clientService.deleteClient(id);
+                return;
+            } else {
+                System.out.println("Choose correct Id of client for deleting");
+            }
+        }
     }
 
     private void createClient() throws IOException {

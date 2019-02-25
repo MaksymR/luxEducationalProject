@@ -30,4 +30,12 @@ public interface ClientDao {
      */
     List<Client> getAllClients();
 
+    /**
+     * delete client by Id
+     *
+     * @param id of client
+     * @return true if client was deleted
+     */
+    boolean deleteClient(long id);
+
 }

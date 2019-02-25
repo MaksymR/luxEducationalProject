@@ -46,6 +46,13 @@ public class ClientDaoImpl implements ClientDao {
         return new ArrayList<>(map.values());
     }
 
+    @Override
+    public boolean deleteClient(long id) {
+        System.out.println("Deleting... Please wait");
+        map.remove(id);
+        return true;
+    }
+
     // factory methods to create a private constructor, which returns a link to only one object
     public static ClientDao getInstance() {
         if (clientDao == null) {
