@@ -26,7 +26,7 @@ public class AdminMenu {
                     createClient();
                     break;
                 case "2":
-                    System.out.println("Modify client");
+                    modifyClient();
                     break;
                 case "4":
                     System.out.println("All clients:");
@@ -55,6 +55,7 @@ public class AdminMenu {
         clientService.createClient(name, surname, age, phoneNumber, email);
     }
 
+
     private void showMenu() {
         System.out.println("1. Add client");
         System.out.println("2. Modify client");
@@ -80,9 +81,44 @@ public class AdminMenu {
         try {
             return Integer.parseInt(br.readLine());
         } catch (IOException | NumberFormatException ex) {
-            System.out.println("Input number please!!");
-            // рекурсивний виклик
+            System.out.println("Input number please!!!");
+            // recursive call
             return readInteger();
+        }
+    }
+
+    private void modifyClient() throws IOException {
+        System.out.println("Input client's ID for modify: ");
+        long id = readLongId();
+        //Client clientForModify = null;
+        for (Client client : clientService.getAllClients()) {
+            long tempId = client.getId();
+            if(tempId == id) {
+                System.out.println("Input name: ");
+                String name = br.readLine();
+                System.out.println("Input surname: ");
+                String surname = br.readLine();
+                System.out.println("Input age:");
+                int age = readInteger();
+                System.out.println("Input phone number: ");
+                String phoneNumber = br.readLine();
+                System.out.println("Input email");
+                String email = br.readLine();
+                clientService.modifyClient(id, name, surname, age, phoneNumber, email);
+                return;
+            } else {
+                System.out.println("Choose \"1. Add client\"");
+            }
+        }
+    }
+
+    private long readLongId() {
+        try {
+            return Long.parseLong(br.readLine());
+        } catch (IOException | NumberFormatException ex) {
+            System.out.println("Input number please!!!");
+            // recursive call
+            return readLongId();
         }
     }
 

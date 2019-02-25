@@ -31,6 +31,14 @@ public class ClientDaoImpl implements ClientDao {
         return true;
     }
 
+    @Override
+    public boolean modifyClient(long id, Client client) {
+        System.out.println("Saving.... Please wait");
+        Client oldClient = map.get(id);
+        map.replace(id, oldClient, client);
+        return true;
+    }
+
     // receives from the map the value of all clients, converts to a list and returns to the top,
     // that is we copy from the top collection here and transmit it further
     @Override

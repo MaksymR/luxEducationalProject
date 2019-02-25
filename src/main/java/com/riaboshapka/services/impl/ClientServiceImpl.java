@@ -39,8 +39,7 @@ public class ClientServiceImpl implements ClientService {
             validationService.validateEmail(email);
             validationService.validatePhone(phone);
             List<Client> tempListOfClients = getAllClients();
-            for (int i = 0; i < tempListOfClients.size(); i++) {
-                Client tempClient = tempListOfClients.get(i);
+            for (Client tempClient : tempListOfClients) {
                 String checkedPhone = tempClient.getPhone();
                 if (checkedPhone.equals(phone)) {
                     System.out.println("Сan not register because this phone number is already registered");
@@ -52,6 +51,36 @@ public class ClientServiceImpl implements ClientService {
             if (result) {
                 System.out.println("Client Saved: " + client);
             }
+        } catch (BusinessException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public void modifyClient(long id, String name, String surname, int age, String phone, String email) {
+        try {
+            validationService.validateAge(age);
+            validationService.validateEmail(email);
+            validationService.validatePhone(phone);
+            for (Client client : getAllClients()) {
+                long clientId = client.getId();
+                if (clientId == id) {
+                    client.setName(name);
+                    client.setSurname(surname);
+                    client.setAge(age);
+                    client.setPhone(phone);
+                    client.setEmail(email);
+                    boolean result = clientDao.modifyClient(id, client);
+                    if (result) {
+                        System.out.println("Client Saved: " + client);
+                    }
+                }
+            }
+//            Client client = new Client(name, surname, age, email, phone);
+//            boolean result = clientDao.saveClient(client);
+//            if (result) {
+//                System.out.println("Client Saved: " + client);
+//            }
         } catch (BusinessException ex) {
             ex.printStackTrace();
         }
