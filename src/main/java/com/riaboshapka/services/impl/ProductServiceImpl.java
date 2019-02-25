@@ -43,4 +43,17 @@ public class ProductServiceImpl implements ProductService {
             }
         }
     }
+
+    @Override
+    public void delete(long id) {
+        for (Product product : getAllProducts()) {
+            long productId = product.getId();
+            if (productId == id) {
+                boolean result = productDao.deleteProduct(id);
+                if (result) {
+                    System.out.println("Product Deleted: " + product);
+                }
+            }
+        }
+    }
 }

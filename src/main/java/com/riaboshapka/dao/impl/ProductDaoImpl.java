@@ -43,6 +43,13 @@ public class ProductDaoImpl implements ProductDao {
         return true;
     }
 
+    @Override
+    public boolean deleteProduct(long id) {
+        System.out.println("Deleting... Please wait");
+        map.remove(id);
+        return true;
+    }
+
     // factory methods to create a private constructor, which returns a link to only one object
     public static ProductDao getInstance() {
         if (productDao == null) {

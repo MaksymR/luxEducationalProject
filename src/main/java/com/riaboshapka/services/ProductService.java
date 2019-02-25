@@ -25,4 +25,11 @@ public interface ProductService {
      * @param productPrice of product
      */
     void modifyProduct(long id, String productName, BigDecimal productPrice);
+
+    /**
+     * delete product
+     *
+     * @param id of product
+     */
+    void delete(long id);
 }

@@ -45,6 +45,10 @@ public class AdminMenu {
                     break;
                 case "6":
                     modifyProduct();
+                    break;
+                case "7":
+                    deleteProduct();
+                    break;
                 case "8":
                     System.out.println("All products:");
                     showAllProducts();
@@ -160,6 +164,20 @@ public class AdminMenu {
                 return;
             } else {
                 System.out.println("Choose \"5. Add product\"");
+            }
+        }
+    }
+
+    private void deleteProduct() {
+        System.out.println("Input product's ID for remove: ");
+        long id = readLongId();
+        for (Product product : productService.getAllProducts()) {
+            long tempId = product.getId();
+            if (tempId == id) {
+                productService.delete(id);
+                return;
+            } else {
+                System.out.println("Choose correct Id of product for deleting");
             }
         }
     }

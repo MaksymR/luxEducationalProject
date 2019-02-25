@@ -29,4 +29,12 @@ public interface ProductDao {
      * @return true if product is modified
      */
     boolean modifyProduct(long id, Product product);
+
+    /**
+     * delete product by Id
+     *
+     * @param id of product
+     * @return true if product was deleted
+     */
+    boolean deleteProduct(long id);
 }

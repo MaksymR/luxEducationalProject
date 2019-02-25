@@ -54,6 +54,8 @@ public interface ClientService {
 
     /**
      * delete client
+     *
+     * @param id of client
      */
     void deleteClient(long id);
 
