@@ -28,4 +28,19 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProducts() {
         return productDao.getAllProducts();
     }
+
+    @Override
+    public void modifyProduct(long id, String productName, BigDecimal productPrice) {
+        for (Product product : getAllProducts()) {
+            long productId = product.getId();
+            if (productId == id) {
+                product.setName(productName);
+                product.setPrice(productPrice);
+                boolean result = productDao.modifyProduct(id, product);
+                if (result) {
+                    System.out.println("Product Saved: " + product);
+                }
+            }
+        }
+    }
 }

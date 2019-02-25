@@ -43,6 +43,8 @@ public class AdminMenu {
                 case "5":
                     createProduct();
                     break;
+                case "6":
+                    modifyProduct();
                 case "8":
                     System.out.println("All products:");
                     showAllProducts();
@@ -95,7 +97,6 @@ public class AdminMenu {
     private void modifyClient() throws IOException {
         System.out.println("Input client's ID for modify: ");
         long id = readLongId();
-        //Client clientForModify = null;
         for (Client client : clientService.getAllClients()) {
             long tempId = client.getId();
             if(tempId == id) {
@@ -144,6 +145,25 @@ public class AdminMenu {
         BigDecimal productPrice = readBigDecimal();
         productService.createProduct(productName, productPrice);
     }
+
+    private void modifyProduct() throws IOException {
+        System.out.println("Input product's ID for modify: ");
+        long id = readLongId();
+        for (Product product : productService.getAllProducts()) {
+            long tempId = product.getId();
+            if (tempId == id) {
+                System.out.println("Input name: ");
+                String productName = br.readLine();
+                System.out.println("Input product's price:");
+                BigDecimal productPrice = readBigDecimal();
+                productService.modifyProduct(id, productName, productPrice);
+                return;
+            } else {
+                System.out.println("Choose \"5. Add product\"");
+            }
+        }
+    }
+
 
     private void showAllProducts() {
         for (Product product : productService.getAllProducts()) {

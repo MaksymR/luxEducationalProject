@@ -37,6 +37,18 @@ public class ClientMenu {
 
     }
 
+    private void showMenu() {
+        System.out.println("1. Register");
+        System.out.println("2. Modify"); // by ID
+        System.out.println();
+        System.out.println("3. List products");
+        System.out.println("4. Add order");
+        System.out.println("5. List orders");
+        System.out.println();
+        System.out.println("R. Return");
+        System.out.println("E. Exit");
+    }
+
     private void modifyClient() throws IOException {
 
         System.out.println("Input client's ID for modify: ");
@@ -69,18 +81,6 @@ public class ClientMenu {
         System.out.println("Input phone number: ");
         String phoneNumber = br.readLine();
         clientService.createClient(name, surname, phoneNumber);
-    }
-
-    private void showMenu() {
-        System.out.println("1. Register");
-        System.out.println("2. Modify"); // by ID
-        System.out.println();
-        System.out.println("3. List products");
-        System.out.println("4. Add order");
-        System.out.println("5. List orders");
-        System.out.println();
-        System.out.println("R. Return");
-        System.out.println("E. Exit");
     }
 
     private long readLongId() {

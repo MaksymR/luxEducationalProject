@@ -35,6 +35,14 @@ public class ProductDaoImpl implements ProductDao {
         return new ArrayList<>(map.values());
     }
 
+    @Override
+    public boolean modifyProduct(long id, Product product) {
+        System.out.println("Modifying.... Please wait");
+        Product oldProduct = map.get(id);
+        map.replace(id, oldProduct, product);
+        return true;
+    }
+
     // factory methods to create a private constructor, which returns a link to only one object
     public static ProductDao getInstance() {
         if (productDao == null) {

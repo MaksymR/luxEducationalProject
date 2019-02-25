@@ -16,4 +16,13 @@ public interface ProductService {
     void createProduct(String name, BigDecimal price);
 
     List<Product> getAllProducts();
+
+    /**
+     * a method for the admin which modify information about product
+     *
+     * @param id of product
+     * @param productName of product
+     * @param productPrice of product
+     */
+    void modifyProduct(long id, String productName, BigDecimal productPrice);
 }

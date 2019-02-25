@@ -20,4 +20,13 @@ public interface ProductDao {
      * @return list of all products
      */
     List<Product> getAllProducts();
+
+    /**
+     * modify product
+     *
+     * @param id of product for save
+     * @param product of product for save
+     * @return true if product is modified
+     */
+    boolean modifyProduct(long id, Product product);
 }
