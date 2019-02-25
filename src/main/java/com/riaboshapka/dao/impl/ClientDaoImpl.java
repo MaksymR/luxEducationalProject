@@ -33,7 +33,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public boolean modifyClient(long id, Client client) {
-        System.out.println("Saving.... Please wait");
+        System.out.println("Modifying.... Please wait");
         Client oldClient = map.get(id);
         map.replace(id, oldClient, client);
         return true;

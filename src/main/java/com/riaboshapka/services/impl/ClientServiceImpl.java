@@ -32,10 +32,6 @@ public class ClientServiceImpl implements ClientService {
         try {
             // If the age is not correct, then nothing else is created
             validationService.validateAge(age);
-            // ignore email ("null") if registration is from ClientMenu
-//            if (email != null) {
-//                validationService.validateEmail(email);
-//            }
             validationService.validateEmail(email);
             validationService.validatePhone(phone);
             List<Client> tempListOfClients = getAllClients();
@@ -54,6 +50,11 @@ public class ClientServiceImpl implements ClientService {
         } catch (BusinessException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void modifyClient(long id, String name, String surname, String phone) {
+        this.modifyClient(id, name, surname, 0, phone, null);
     }
 
     @Override
@@ -76,11 +77,6 @@ public class ClientServiceImpl implements ClientService {
                     }
                 }
             }
-//            Client client = new Client(name, surname, age, email, phone);
-//            boolean result = clientDao.saveClient(client);
-//            if (result) {
-//                System.out.println("Client Saved: " + client);
-//            }
         } catch (BusinessException ex) {
             ex.printStackTrace();
         }

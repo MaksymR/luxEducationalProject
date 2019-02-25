@@ -27,6 +27,16 @@ public interface ClientService {
     void createClient(String name, String surname, int age, String phone, String email);
 
     /**
+     * a method for modify client via ClientMenu
+     *
+     * @param id of current client
+     * @param name of current client
+     * @param surname of current client
+     * @param phone of current client
+     */
+    void modifyClient(long id, String name, String surname, String phone);
+
+    /**
      * a method for the admin which modify information about client
      *
      * @param id of client
