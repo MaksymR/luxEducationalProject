@@ -1,19 +1,24 @@
 package com.riaboshapka.view;
 
 import com.riaboshapka.domain.Client;
+import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.ClientService;
+import com.riaboshapka.services.ProductService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class AdminMenu {
 
     private final BufferedReader br;
     private final ClientService clientService;
+    private final ProductService productService;
 
-    public AdminMenu(BufferedReader br, ClientService clientService) {
+    public AdminMenu(BufferedReader br, ClientService clientService, ProductService productService) {
         this.br = br;
         this.clientService = clientService;
+        this.productService = productService;
     }
 
     public void show() throws IOException {
@@ -35,6 +40,13 @@ public class AdminMenu {
                     System.out.println("All clients:");
                     showAllClients();
                     break;
+                case "5":
+                    createProduct();
+                    break;
+                case "8":
+                    System.out.println("All products:");
+                    showAllProducts();
+                    break;
                 case "E":
                     return;
                 default:
@@ -43,35 +55,6 @@ public class AdminMenu {
         }
 
     }
-
-    private void deleteClient() {
-        System.out.println("Input client's ID for remove: ");
-        long id = readLongId();
-        for (Client client : clientService.getAllClients()) {
-            long tempId = client.getId();
-            if(tempId == id) {
-                clientService.deleteClient(id);
-                return;
-            } else {
-                System.out.println("Choose correct Id of client for deleting");
-            }
-        }
-    }
-
-    private void createClient() throws IOException {
-        System.out.println("Input name: ");
-        String name = br.readLine();
-        System.out.println("Input surname: ");
-        String surname = br.readLine();
-        System.out.println("Input age:");
-        int age = readInteger();
-        System.out.println("Input phone number: ");
-        String phoneNumber = br.readLine();
-        System.out.println("Input email");
-        String email = br.readLine();
-        clientService.createClient(name, surname, age, phoneNumber, email);
-    }
-
 
     private void showMenu() {
         System.out.println("1. Add client");
@@ -94,15 +77,20 @@ public class AdminMenu {
         System.out.println("E. Exit");
     }
 
-    private int readInteger() {
-        try {
-            return Integer.parseInt(br.readLine());
-        } catch (IOException | NumberFormatException ex) {
-            System.out.println("Input number please!!!");
-            // recursive call
-            return readInteger();
-        }
+    private void createClient() throws IOException {
+        System.out.println("Input name: ");
+        String name = br.readLine();
+        System.out.println("Input surname: ");
+        String surname = br.readLine();
+        System.out.println("Input age:");
+        int age = readInteger();
+        System.out.println("Input phone number: ");
+        String phoneNumber = br.readLine();
+        System.out.println("Input email");
+        String email = br.readLine();
+        clientService.createClient(name, surname, age, phoneNumber, email);
     }
+
 
     private void modifyClient() throws IOException {
         System.out.println("Input client's ID for modify: ");
@@ -129,6 +117,50 @@ public class AdminMenu {
         }
     }
 
+    private void deleteClient() {
+        System.out.println("Input client's ID for remove: ");
+        long id = readLongId();
+        for (Client client : clientService.getAllClients()) {
+            long tempId = client.getId();
+            if(tempId == id) {
+                clientService.deleteClient(id);
+                return;
+            } else {
+                System.out.println("Choose correct Id of client for deleting");
+            }
+        }
+    }
+
+    private void showAllClients() {
+        for (Client client : clientService.getAllClients()) {
+            System.out.println(client);
+        }
+    }
+
+    private void createProduct() throws IOException {
+        System.out.println("Input product's name: ");
+        String productName = br.readLine();
+        System.out.println("Input product's price:");
+        BigDecimal productPrice = readBigDecimal();
+        productService.createProduct(productName, productPrice);
+    }
+
+    private void showAllProducts() {
+        for (Product product : productService.getAllProducts()) {
+            System.out.println(product);
+        }
+    }
+
+    private int readInteger() {
+        try {
+            return Integer.parseInt(br.readLine());
+        } catch (IOException | NumberFormatException ex) {
+            System.out.println("Input number please!!!");
+            // recursive call
+            return readInteger();
+        }
+    }
+
     private long readLongId() {
         try {
             return Long.parseLong(br.readLine());
@@ -139,9 +171,13 @@ public class AdminMenu {
         }
     }
 
-    private void showAllClients() {
-        for (Client client : clientService.getAllClients()) {
-            System.out.println(client);
+    private BigDecimal readBigDecimal() {
+        try {
+            return BigDecimal.valueOf(Long.parseLong(br.readLine()));
+        } catch (IOException | NumberFormatException ex) {
+            System.out.println("Input number please!!!");
+            // recursive call
+            return readBigDecimal();
         }
     }
 }
