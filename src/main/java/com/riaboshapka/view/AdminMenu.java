@@ -3,6 +3,7 @@ package com.riaboshapka.view;
 import com.riaboshapka.domain.Client;
 import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.ClientService;
+import com.riaboshapka.services.OrderService;
 import com.riaboshapka.services.ProductService;
 
 import java.io.BufferedReader;
@@ -14,11 +15,14 @@ public class AdminMenu {
     private final BufferedReader br;
     private final ClientService clientService;
     private final ProductService productService;
+    private final OrderService orderService;
 
-    public AdminMenu(BufferedReader br, ClientService clientService, ProductService productService) {
+    public AdminMenu(BufferedReader br, ClientService clientService,
+                     ProductService productService, OrderService orderService) {
         this.br = br;
         this.clientService = clientService;
         this.productService = productService;
+        this.orderService = orderService;
     }
 
     public void show() throws IOException {

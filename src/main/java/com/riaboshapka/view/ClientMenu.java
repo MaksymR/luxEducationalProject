@@ -1,19 +1,30 @@
 package com.riaboshapka.view;
 
 import com.riaboshapka.domain.Client;
+import com.riaboshapka.domain.Order;
+import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.ClientService;
+import com.riaboshapka.services.OrderService;
+import com.riaboshapka.services.ProductService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientMenu {
 
     private final BufferedReader br;
     private final ClientService clientService;
+    private final ProductService productService;
+    private final OrderService orderService;
 
-    public ClientMenu(BufferedReader br, ClientService clientService) {
+    public ClientMenu(BufferedReader br, ClientService clientService,
+                      ProductService productService, OrderService orderService) {
         this.br = br;
         this.clientService = clientService;
+        this.productService = productService;
+        this.orderService = orderService;
     }
 
     public void show() throws IOException {
@@ -27,6 +38,16 @@ public class ClientMenu {
                     break;
                 case "2":
                     modifyClient();
+                    break;
+                case "3":
+                    System.out.println("All products:");
+                    showAllProducts();
+                    break;
+                case "4":
+                    createOrder();
+                    break;
+                case "5":
+                    showAllOrders();
                     break;
                 case "E":
                     return;
@@ -47,6 +68,17 @@ public class ClientMenu {
         System.out.println();
         System.out.println("R. Return");
         System.out.println("E. Exit");
+    }
+
+    private void createClient() throws IOException {
+        System.out.println("Input name: ");
+        String name;
+        name = br.readLine();
+        System.out.println("Input surname: ");
+        String surname = br.readLine();
+        System.out.println("Input phone number: ");
+        String phoneNumber = br.readLine();
+        clientService.createClient(name, surname, phoneNumber);
     }
 
     private void modifyClient() throws IOException {
@@ -72,15 +104,59 @@ public class ClientMenu {
 
     }
 
-    private void createClient() throws IOException {
-        System.out.println("Input name: ");
-        String name;
-        name = br.readLine();
-        System.out.println("Input surname: ");
-        String surname = br.readLine();
-        System.out.println("Input phone number: ");
-        String phoneNumber = br.readLine();
-        clientService.createClient(name, surname, phoneNumber);
+    private void showAllProducts() {
+        for (Product product : productService.getAllProducts()) {
+            System.out.println(product);
+        }
+    }
+
+    private void createOrder() {
+        showAllProducts();
+        System.out.println("Input client's ID for create client's order: ");
+        long clientId = readLongId();
+        List<Product> listProducts = createProductsList();
+        Client client = getClientById(clientId);
+        orderService.createOrder(client, listProducts);
+    }
+
+    private Client getClientById(long clientId) {
+        Client client = null;
+        for (Client tempClient : clientService.getAllClients()) {
+            long tempId = tempClient.getId();
+            if(tempId == clientId) {
+                client = tempClient;
+            } else {
+                System.out.println("Choose \"1. Register\"");
+            }
+        }
+        return client;
+    }
+
+    private List<Product> createProductsList() {
+        List<Product> listProducts = new ArrayList<>();
+        long productId;
+        boolean exitFromWhile = true;
+        while (exitFromWhile) {
+            System.out.println("Enter product's ID for adding it to order or \"-1\"-for exit)");
+            productId = readLongId();
+            if (productId != -1) {
+                for (Product product : productService.getAllProducts()) {
+                    long tempProductId = product.getId();
+                    if (tempProductId == productId) {
+                        listProducts.add(product);
+                    }
+                }
+            } else {
+                exitFromWhile = false;
+            }
+        }
+        return listProducts;
+    }
+
+    private void showAllOrders() {
+        for (Order order : orderService.getAllOrders()) {
+            System.out.println(order);
+        }
     }
 
     private long readLongId() {
