@@ -17,7 +17,7 @@ public interface ClientDao {
     /**
      * modify client
      *
-     * @param id of client for save
+     * @param id     of client for save
      * @param client for save
      * @return true if client is modified
      */

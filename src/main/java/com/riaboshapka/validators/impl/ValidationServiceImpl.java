@@ -3,7 +3,14 @@ package com.riaboshapka.validators.impl;
 import com.riaboshapka.exceptions.BusinessException;
 import com.riaboshapka.validators.ValidationService;
 
+import java.util.ArrayList;
+
 public class ValidationServiceImpl implements ValidationService {
+
+    private static final String Code_Kiyvstar067 = "067";
+    private static final String Code_Kiyvstar097 = "097";
+    private static final String Code_Vodafone050 = "050";
+
 
     // taken from the service layer
     @Override
@@ -32,16 +39,17 @@ public class ValidationServiceImpl implements ValidationService {
     @Override
     public void validatePhone(String phone) throws BusinessException {
         String mobileCode = phone.substring(0, 3);
-        System.out.println(mobileCode);
-        String KyivStarCode1 = "067";
-        String KyivStarCode2 = "097";
-        String VodafoneCode1 = "050";
+        //System.out.println(mobileCode);
+        ArrayList<String> operatorsCodes = new ArrayList<>();
+        operatorsCodes.add(Code_Kiyvstar067);
+        operatorsCodes.add(Code_Kiyvstar097);
+        operatorsCodes.add(Code_Vodafone050);
         if (phone.length() != 10) {
-            throw new BusinessException("Incorect length of phone!!!" +
+            throw new BusinessException("Incorrect length of phone!!!" +
                     " The length of phone has to have 10 digits");
         }
-        if (!mobileCode.equals(KyivStarCode1) && !mobileCode.equals(KyivStarCode2) && !mobileCode.equals(VodafoneCode1)) {
-            throw new BusinessException("Incorect mobile operator!!!" +
+        if (!operatorsCodes.contains(mobileCode)) {
+            throw new BusinessException("Incorrect mobile operator!!!" +
                     " Mobile operator has to have next code \"067\" or \"097\" or \"050\"");
         }
     }

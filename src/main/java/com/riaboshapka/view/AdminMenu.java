@@ -63,6 +63,8 @@ public class AdminMenu {
                 case "9":
                     modifyOrder();
                     break;
+                case "10":
+                    deleteOrder();
                 case "11":
                     showAllOrders();
                     break;
@@ -117,7 +119,7 @@ public class AdminMenu {
         long id = readLongId();
         for (Client client : clientService.getAllClients()) {
             long tempId = client.getId();
-            if(tempId == id) {
+            if (tempId == id) {
                 System.out.println("Input name: ");
                 String name = br.readLine();
                 System.out.println("Input surname: ");
@@ -142,7 +144,7 @@ public class AdminMenu {
         long id = readLongId();
         for (Client client : clientService.getAllClients()) {
             long tempId = client.getId();
-            if(tempId == id) {
+            if (tempId == id) {
                 clientService.deleteClient(id);
                 return;
             } else {
@@ -204,7 +206,7 @@ public class AdminMenu {
         long id = readLongId();
         for (Order order : orderService.getAllOrders()) {
             long tempId = order.getId();
-            if(tempId == id) {
+            if (tempId == id) {
                 Client clientForModifyOrder = getClientForModifyOrder();
                 List<Product> productsListForModifyOrder = getProductsListForModifyOrder();
                 orderService.modifyOrder(id, clientForModifyOrder, productsListForModifyOrder);
@@ -247,6 +249,21 @@ public class AdminMenu {
             }
         }
         return listProducts;
+    }
+
+    private void deleteOrder() {
+        showAllOrders();
+        System.out.println("Input order's ID for remove: ");
+        long id = readLongId();
+        for (Order order : orderService.getAllOrders()) {
+            long tempId = order.getId();
+            if (tempId == id) {
+                orderService.delete(id);
+                return;
+            } else {
+                System.out.println("Choose correct Id of order for deleting");
+            }
+        }
     }
 
     private void showAllProducts() {

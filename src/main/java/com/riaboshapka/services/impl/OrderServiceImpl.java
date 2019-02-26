@@ -44,4 +44,17 @@ public class OrderServiceImpl implements OrderService {
             }
         }
     }
+
+    @Override
+    public void delete(long id) {
+        for (Order order : getAllOrders()) {
+            long orderId = order.getId();
+            if (orderId == id) {
+                boolean result = orderDao.deleteOrder(id);
+                if (result) {
+                    System.out.println("Order Deleted: " + order);
+                }
+            }
+        }
+    }
 }

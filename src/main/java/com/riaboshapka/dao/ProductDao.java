@@ -14,6 +14,7 @@ public interface ProductDao {
      */
     boolean saveClient(Product product);
 
+
     /**
      * to read a list of all products
      *
@@ -21,14 +22,16 @@ public interface ProductDao {
      */
     List<Product> getAllProducts();
 
+
     /**
      * modify product
      *
-     * @param id of product for save
+     * @param id      of product for save
      * @param product of product for save
      * @return true if product is modified
      */
     boolean modifyProduct(long id, Product product);
+
 
     /**
      * delete product by Id

@@ -1,6 +1,5 @@
 package com.riaboshapka.dao.impl;
 
-import com.riaboshapka.dao.ClientDao;
 import com.riaboshapka.dao.ProductDao;
 import com.riaboshapka.domain.Product;
 

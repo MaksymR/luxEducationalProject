@@ -14,7 +14,30 @@ public interface OrderDao {
      */
     boolean saveOrder(Order order);
 
+
+    /**
+     * to read a list of all orders
+     *
+     * @return list of all products
+     */
     ArrayList<Order> getAllOrders();
 
+
+    /**
+     * modify order
+     *
+     * @param id    of order for save
+     * @param order of order for save
+     * @return true if order is modified
+     */
     boolean modifyOrder(long id, Order order);
+
+
+    /**
+     * delete order by Id
+     *
+     * @param id of order
+     * @return true if order was deleted
+     */
+    boolean deleteOrder(long id);
 }

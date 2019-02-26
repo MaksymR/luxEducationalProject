@@ -88,7 +88,7 @@ public class ClientMenu {
         //Client clientForModify = null;
         for (Client client : clientService.getAllClients()) {
             long tempId = client.getId();
-            if(tempId == id) {
+            if (tempId == id) {
                 System.out.println("Input name: ");
                 String name = br.readLine();
                 System.out.println("Input surname: ");
@@ -129,7 +129,7 @@ public class ClientMenu {
         Client client = null;
         for (Client tempClient : clientService.getAllClients()) {
             long tempId = tempClient.getId();
-            if(tempId == clientId) {
+            if (tempId == clientId) {
                 client = tempClient;
             }
         }

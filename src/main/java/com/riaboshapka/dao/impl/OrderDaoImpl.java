@@ -13,7 +13,7 @@ public class OrderDaoImpl implements OrderDao {
     private Map<Long, Order> map = new HashMap<>();
     private static long generator = 0;
 
-    private OrderDaoImpl(){
+    private OrderDaoImpl() {
     }
 
     @Override
@@ -34,6 +34,13 @@ public class OrderDaoImpl implements OrderDao {
         System.out.println("Modifying.... Please wait");
         Order oldOrder = map.get(id);
         map.replace(id, oldOrder, newOrder);
+        return true;
+    }
+
+    @Override
+    public boolean deleteOrder(long id) {
+        System.out.println("Deleting... Please wait");
+        map.remove(id);
         return true;
     }
 
