@@ -1,6 +1,7 @@
 package com.riaboshapka.view;
 
 import com.riaboshapka.domain.Client;
+import com.riaboshapka.domain.Order;
 import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.ClientService;
 import com.riaboshapka.services.OrderService;
@@ -56,6 +57,9 @@ public class AdminMenu {
                 case "8":
                     System.out.println("All products:");
                     showAllProducts();
+                    break;
+                case "11":
+                    showAllOrders();
                     break;
                 case "E":
                     return;
@@ -190,6 +194,12 @@ public class AdminMenu {
     private void showAllProducts() {
         for (Product product : productService.getAllProducts()) {
             System.out.println(product);
+        }
+    }
+
+    private void showAllOrders() {
+        for (Order order : orderService.getAllOrders()) {
+            System.out.println(order);
         }
     }
 
