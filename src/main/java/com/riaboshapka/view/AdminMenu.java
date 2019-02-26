@@ -10,6 +10,8 @@ import com.riaboshapka.services.ProductService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminMenu {
 
@@ -57,6 +59,9 @@ public class AdminMenu {
                 case "8":
                     System.out.println("All products:");
                     showAllProducts();
+                    break;
+                case "9":
+                    modifyOrder();
                     break;
                 case "11":
                     showAllOrders();
@@ -107,6 +112,7 @@ public class AdminMenu {
 
 
     private void modifyClient() throws IOException {
+        showAllClients();
         System.out.println("Input client's ID for modify: ");
         long id = readLongId();
         for (Client client : clientService.getAllClients()) {
@@ -131,6 +137,7 @@ public class AdminMenu {
     }
 
     private void deleteClient() {
+        showAllClients();
         System.out.println("Input client's ID for remove: ");
         long id = readLongId();
         for (Client client : clientService.getAllClients()) {
@@ -159,6 +166,7 @@ public class AdminMenu {
     }
 
     private void modifyProduct() throws IOException {
+        showAllProducts();
         System.out.println("Input product's ID for modify: ");
         long id = readLongId();
         for (Product product : productService.getAllProducts()) {
@@ -170,13 +178,12 @@ public class AdminMenu {
                 BigDecimal productPrice = readBigDecimal();
                 productService.modifyProduct(id, productName, productPrice);
                 return;
-            } else {
-                System.out.println("Choose \"5. Add product\"");
             }
         }
     }
 
     private void deleteProduct() {
+        showAllProducts();
         System.out.println("Input product's ID for remove: ");
         long id = readLongId();
         for (Product product : productService.getAllProducts()) {
@@ -190,6 +197,57 @@ public class AdminMenu {
         }
     }
 
+
+    private void modifyOrder() {
+        showAllOrders();
+        System.out.println("Input order's ID for modify:");
+        long id = readLongId();
+        for (Order order : orderService.getAllOrders()) {
+            long tempId = order.getId();
+            if(tempId == id) {
+                Client clientForModifyOrder = getClientForModifyOrder();
+                List<Product> productsListForModifyOrder = getProductsListForModifyOrder();
+                orderService.modifyOrder(id, clientForModifyOrder, productsListForModifyOrder);
+                return;
+            }
+        }
+    }
+
+    private Client getClientForModifyOrder() {
+        Client clientForModifiedOrder = null;
+        showAllClients();
+        System.out.println("Enter client's ID for modify:");
+        long clientId = readLongId();
+        for (Client client : clientService.getAllClients()) {
+            long clientTempId = client.getId();
+            if (clientTempId == clientId) {
+                clientForModifiedOrder = client;
+            }
+        }
+        return clientForModifiedOrder;
+    }
+
+    private List<Product> getProductsListForModifyOrder() {
+        showAllProducts();
+        List<Product> listProducts = new ArrayList<>();
+        long productId;
+        boolean exitFromWhile = true;
+        while (exitFromWhile) {
+            System.out.println("Enter product's ID for add into the new order or \"-1\"-for exit)");
+            productId = readLongId();
+            if (productId != -1) {
+                for (Product product : productService.getAllProducts()) {
+                    long tempProductId = product.getId();
+                    if (tempProductId == productId) {
+                        listProducts.add(product);
+                    }
+                }
+            } else {
+                exitFromWhile = false;
+            }
+        }
+        return listProducts;
+    }
 
     private void showAllProducts() {
         for (Product product : productService.getAllProducts()) {

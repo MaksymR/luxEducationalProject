@@ -82,7 +82,7 @@ public class ClientMenu {
     }
 
     private void modifyClient() throws IOException {
-
+        showAllClients();
         System.out.println("Input client's ID for modify: ");
         long id = readLongId();
         //Client clientForModify = null;
@@ -97,11 +97,15 @@ public class ClientMenu {
                 String phoneNumber = br.readLine();
                 clientService.modifyClient(id, name, surname, phoneNumber);
                 return;
-            } else {
-                System.out.println("Choose \"1. Register\"");
             }
         }
 
+    }
+
+    private void showAllClients() {
+        for (Client client : clientService.getAllClients()) {
+            System.out.println(client);
+        }
     }
 
     private void showAllProducts() {
@@ -111,9 +115,11 @@ public class ClientMenu {
     }
 
     private void createOrder() {
-        showAllProducts();
+        //showAllProducts();
+        showAllClients();
         System.out.println("Input client's ID for create client's order: ");
         long clientId = readLongId();
+        showAllProducts();
         List<Product> listProducts = createProductsList();
         Client client = getClientById(clientId);
         orderService.createOrder(client, listProducts);
@@ -125,9 +131,10 @@ public class ClientMenu {
             long tempId = tempClient.getId();
             if(tempId == clientId) {
                 client = tempClient;
-            } else {
-                System.out.println("Choose \"1. Register\"");
             }
+        }
+        if (client == null) {
+            System.out.println("Choose \"1. Register\"");
         }
         return client;
     }

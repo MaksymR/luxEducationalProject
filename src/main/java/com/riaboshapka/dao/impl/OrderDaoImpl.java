@@ -29,6 +29,14 @@ public class OrderDaoImpl implements OrderDao {
         return new ArrayList<>(map.values());
     }
 
+    @Override
+    public boolean modifyOrder(long id, Order newOrder) {
+        System.out.println("Modifying.... Please wait");
+        Order oldOrder = map.get(id);
+        map.replace(id, oldOrder, newOrder);
+        return true;
+    }
+
     public static OrderDao getInstance() {
         if (orderDao == null) {
             orderDao = new OrderDaoImpl();

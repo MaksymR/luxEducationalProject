@@ -29,4 +29,19 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
         return orderDao.getAllOrders();
     }
+
+    @Override
+    public void modifyOrder(long id, Client clientForModifyOrder, List<Product> productsListForModifyOrder) {
+        for (Order order : getAllOrders()) {
+            long orderId = order.getId();
+            if (orderId == id) {
+                order.setClient(clientForModifyOrder);
+                order.setProducts(productsListForModifyOrder);
+                boolean result = orderDao.modifyOrder(id, order);
+                if (result) {
+                    System.out.println("Order Saved: " + order);
+                }
+            }
+        }
+    }
 }

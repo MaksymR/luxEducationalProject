@@ -36,10 +36,10 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean modifyProduct(long id, Product product) {
+    public boolean modifyProduct(long id, Product newProduct) {
         System.out.println("Modifying.... Please wait");
         Product oldProduct = map.get(id);
-        map.replace(id, oldProduct, product);
+        map.replace(id, oldProduct, newProduct);
         return true;
     }
 

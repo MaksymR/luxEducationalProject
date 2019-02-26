@@ -15,4 +15,6 @@ public interface OrderDao {
     boolean saveOrder(Order order);
 
     ArrayList<Order> getAllOrders();
+
+    boolean modifyOrder(long id, Order order);
 }

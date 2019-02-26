@@ -11,4 +11,6 @@ public interface OrderService {
     void createOrder(Client client, List<Product> products);
 
     List<Order> getAllOrders();
+
+    void modifyOrder(long id, Client clientForModifyOrder, List<Product> productsListForModifyOrder);
 }
