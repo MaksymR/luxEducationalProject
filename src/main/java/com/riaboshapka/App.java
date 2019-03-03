@@ -3,6 +3,7 @@ package com.riaboshapka;
 import com.riaboshapka.dao.ClientDao;
 import com.riaboshapka.dao.OrderDao;
 import com.riaboshapka.dao.ProductDao;
+import com.riaboshapka.dao.impl.ClientDBDao;
 import com.riaboshapka.dao.impl.ClientDaoImpl;
 import com.riaboshapka.dao.impl.OrderDaoImpl;
 import com.riaboshapka.dao.impl.ProductDaoImpl;
@@ -30,7 +31,9 @@ public class App {
 
         // configured all necessary dependencies for this application
         // realizing of the dependency injection
-        ClientDao clientDao = ClientDaoImpl.getInstance();
+        //ClientDao clientDao = ClientDaoImpl.getInstance();
+        // connect to db
+        ClientDao clientDao = new ClientDBDao();
         ProductDao productDao = ProductDaoImpl.getInstance();
         OrderDao orderDao = OrderDaoImpl.getInstance();
         ValidationService validationService = new ValidationServiceImpl();
