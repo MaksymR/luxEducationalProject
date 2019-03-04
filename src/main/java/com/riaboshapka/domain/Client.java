@@ -23,6 +23,15 @@ public class Client {
         this.phone = phone;
     }
 
+    public Client(long id, String name, String surname, int age, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public long getId() {
         return id;
     }
@@ -78,8 +87,8 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

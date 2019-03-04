@@ -132,8 +132,6 @@ public class AdminMenu {
                 String email = br.readLine();
                 clientService.modifyClient(id, name, surname, age, phoneNumber, email);
                 return;
-            } else {
-                System.out.println("Choose \"1. Add client\"");
             }
         }
     }
@@ -147,8 +145,6 @@ public class AdminMenu {
             if (tempId == id) {
                 clientService.deleteClient(id);
                 return;
-            } else {
-                System.out.println("Choose correct Id of client for deleting");
             }
         }
     }

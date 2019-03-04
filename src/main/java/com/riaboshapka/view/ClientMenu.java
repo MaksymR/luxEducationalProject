@@ -85,7 +85,6 @@ public class ClientMenu {
         showAllClients();
         System.out.println("Input client's ID for modify: ");
         long id = readLongId();
-        //Client clientForModify = null;
         for (Client client : clientService.getAllClients()) {
             long tempId = client.getId();
             if (tempId == id) {

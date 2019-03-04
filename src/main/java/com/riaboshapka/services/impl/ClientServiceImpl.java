@@ -1,6 +1,6 @@
 package com.riaboshapka.services.impl;
 
-import com.riaboshapka.dao.ClientDao;
+import com.riaboshapka.dao.impl.ClientDBDao;
 import com.riaboshapka.domain.Client;
 import com.riaboshapka.exceptions.BusinessException;
 import com.riaboshapka.services.ClientService;
@@ -12,11 +12,11 @@ public class ClientServiceImpl implements ClientService {
 
     // the dependency injection
     // this dependency for constructor
-    private ClientDao clientDao;
+    private ClientDBDao clientDBDao;
     private ValidationService validationService;
 
-    public ClientServiceImpl(ClientDao clientDao, ValidationService validationService) {
-        this.clientDao = clientDao;
+    public ClientServiceImpl(ClientDBDao clientDBDao, ValidationService validationService) {
+        this.clientDBDao = clientDBDao;
         this.validationService = validationService;
     }
 
@@ -43,7 +43,7 @@ public class ClientServiceImpl implements ClientService {
                 }
             }
             Client client = new Client(name, surname, age, email, phone);
-            boolean result = clientDao.saveClient(client);
+            boolean result = clientDBDao.saveClient(client);
             if (result) {
                 System.out.println("Client Saved: " + client);
             }
@@ -71,7 +71,7 @@ public class ClientServiceImpl implements ClientService {
                     client.setAge(age);
                     client.setPhone(phone);
                     client.setEmail(email);
-                    boolean result = clientDao.modifyClient(id, client);
+                    boolean result = clientDBDao.modifyClient(id, client);
                     if (result) {
                         System.out.println("Client Saved: " + client);
                     }
@@ -85,7 +85,7 @@ public class ClientServiceImpl implements ClientService {
     // get a copy of the clients
     @Override
     public List<Client> getAllClients() {
-        return clientDao.getAllClients();
+        return clientDBDao.getAllClients();
     }
 
 
@@ -94,7 +94,7 @@ public class ClientServiceImpl implements ClientService {
         for (Client client : getAllClients()) {
             long clientId = client.getId();
             if (clientId == id) {
-                boolean result = clientDao.deleteClient(id);
+                boolean result = clientDBDao.deleteClient(id);
                 if (result) {
                     System.out.println("Client Deleted: " + client);
                 }
