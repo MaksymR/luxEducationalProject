@@ -12,7 +12,7 @@ public interface ProductDao {
      * @param product for save
      * @return true if client is saved
      */
-    boolean saveClient(Product product);
+    boolean saveProduct(Product product);
 
 
     /**

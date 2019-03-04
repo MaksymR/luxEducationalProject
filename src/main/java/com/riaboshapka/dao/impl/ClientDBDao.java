@@ -18,7 +18,7 @@ public class ClientDBDao implements ClientDao {
              Statement statement = connection.createStatement()) {
 
             statement.execute(
-                    "CREATE TABLE IF NOT EXISTS CLIENT(ID BIGINT PRIMARY KEY AUTO_INCREMENT," +
+                    "CREATE TABLE IF NOT EXISTS CLIENTS(ID BIGINT PRIMARY KEY AUTO_INCREMENT," +
                             " NAME VARCHAR(20), SURNAME VARCHAR(20), AGE INT, PHONE VARCHAR(20)," +
                             " EMAIL VARCHAR(50))"
             );
@@ -32,7 +32,7 @@ public class ClientDBDao implements ClientDao {
     public boolean saveClient(Client client) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement(
-                     "INSERT INTO CLIENT (NAME, SURNAME, AGE, PHONE, EMAIL) VALUES(?, ?, ?, ?, ?)")) {
+                     "INSERT INTO CLIENTS (NAME, SURNAME, AGE, PHONE, EMAIL) VALUES(?, ?, ?, ?, ?)")) {
             System.out.println("Saving.... Please wait");
             statement.setString(1, client.getName());
             statement.setString(2, client.getSurname());
@@ -51,7 +51,7 @@ public class ClientDBDao implements ClientDao {
     public boolean modifyClient(long id, Client client) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement(
-                     "UPDATE CLIENT SET NAME = ?, SURNAME = ?, AGE = ?, PHONE = ?, EMAIL = ? WHERE ID = ?")) {
+                     "UPDATE CLIENTS SET NAME = ?, SURNAME = ?, AGE = ?, PHONE = ?, EMAIL = ? WHERE ID = ?")) {
             System.out.println("Modifying.... Please wait");
             statement.setLong(6, id);
             statement.setString(1, client.getName());
@@ -72,7 +72,7 @@ public class ClientDBDao implements ClientDao {
         List<Client> resultClientsList = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              Statement statement = connection.createStatement()) {
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENT")) {
+            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS")) {
                 while (resultSet.next()) {
                     long id = resultSet.getLong(1);
                     String name = resultSet.getString(2);
@@ -94,7 +94,7 @@ public class ClientDBDao implements ClientDao {
         Client client = findClient(clientId);
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement(
-                     "DELETE FROM CLIENT WHERE ID = ?")) {
+                     "DELETE FROM CLIENTS WHERE ID = ?")) {
             System.out.println("Deleting... Please wait");
             statement.setLong(1, clientId);
             System.out.println("Client Deleted: " + client);
@@ -107,7 +107,7 @@ public class ClientDBDao implements ClientDao {
 
     private Client findClient(long clientId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENT WHERE ID = ?")) {
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENTS WHERE ID = ?")) {
             statement.setLong(1, clientId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 resultSet.next();

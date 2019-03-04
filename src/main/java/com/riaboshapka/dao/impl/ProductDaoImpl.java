@@ -21,7 +21,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean saveClient(Product product) {
+    public boolean saveProduct(Product product) {
         // saving data (a new client) in database emulation every time
         System.out.println("Saving.... Please wait");
         product.setId(generator++);

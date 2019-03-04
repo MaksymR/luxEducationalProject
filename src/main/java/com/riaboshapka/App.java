@@ -3,10 +3,7 @@ package com.riaboshapka;
 import com.riaboshapka.dao.ClientDao;
 import com.riaboshapka.dao.OrderDao;
 import com.riaboshapka.dao.ProductDao;
-import com.riaboshapka.dao.impl.ClientDBDao;
-import com.riaboshapka.dao.impl.ClientDaoImpl;
-import com.riaboshapka.dao.impl.OrderDaoImpl;
-import com.riaboshapka.dao.impl.ProductDaoImpl;
+import com.riaboshapka.dao.impl.*;
 import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.ClientService;
 import com.riaboshapka.services.OrderService;
@@ -32,11 +29,12 @@ public class App {
         // configured all necessary dependencies for this application
         // realizing of the dependency injection
         ClientDBDao clientDBDao = new ClientDBDao();
+        ProductDBDao productDBDao = new ProductDBDao();
         ProductDao productDao = ProductDaoImpl.getInstance();
         OrderDao orderDao = OrderDaoImpl.getInstance();
         ValidationService validationService = new ValidationServiceImpl();
         ClientService clientService = new ClientServiceImpl(clientDBDao, validationService);
-        ProductService productService = new ProductServiceImpl(productDao);
+        ProductService productService = new ProductServiceImpl(productDBDao);
         OrderService orderService = new OrderServiceImpl(orderDao);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         AdminMenu adminMenu = new AdminMenu(br, clientService, productService, orderService);

@@ -1,6 +1,6 @@
 package com.riaboshapka.services.impl;
 
-import com.riaboshapka.dao.ProductDao;
+import com.riaboshapka.dao.impl.ProductDBDao;
 import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.ProductService;
 
@@ -9,16 +9,16 @@ import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 
-    private ProductDao productDao;
+    private ProductDBDao productDBDao;
 
-    public ProductServiceImpl(ProductDao productDao) {
-        this.productDao = productDao;
+    public ProductServiceImpl(ProductDBDao productDBDao) {
+        this.productDBDao = productDBDao;
     }
 
     @Override
     public void createProduct(String productName, BigDecimal price) {
         Product product = new Product(productName, price);
-        boolean result = productDao.saveClient(product);
+        boolean result = productDBDao.saveProduct(product);
         if (result) {
             System.out.println("Product Saved: " + product);
         }
@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return productDao.getAllProducts();
+        return productDBDao.getAllProducts();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
             if (productId == id) {
                 product.setName(productName);
                 product.setPrice(productPrice);
-                boolean result = productDao.modifyProduct(id, product);
+                boolean result = productDBDao.modifyProduct(id, product);
                 if (result) {
                     System.out.println("Product Saved: " + product);
                 }
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
         for (Product product : getAllProducts()) {
             long productId = product.getId();
             if (productId == id) {
-                boolean result = productDao.deleteProduct(id);
+                boolean result = productDBDao.deleteProduct(id);
                 if (result) {
                     System.out.println("Product Deleted: " + product);
                 }

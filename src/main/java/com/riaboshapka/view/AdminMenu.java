@@ -180,6 +180,12 @@ public class AdminMenu {
         }
     }
 
+    private void showAllProducts() {
+        for (Product product : productService.getAllProducts()) {
+            System.out.println(product);
+        }
+    }
+
     private void deleteProduct() {
         showAllProducts();
         System.out.println("Input product's ID for remove: ");
@@ -259,12 +265,6 @@ public class AdminMenu {
             } else {
                 System.out.println("Choose correct Id of order for deleting");
             }
-        }
-    }
-
-    private void showAllProducts() {
-        for (Product product : productService.getAllProducts()) {
-            System.out.println(product);
         }
     }
 
