@@ -2,7 +2,6 @@ package com.riaboshapka.validators.impl;
 
 import com.riaboshapka.exceptions.BusinessException;
 import com.riaboshapka.validators.ValidationService;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.OPCode;
 
 import java.util.ArrayList;
 import java.util.List;
