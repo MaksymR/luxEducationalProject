@@ -2,6 +2,7 @@ package com.riaboshapka.validators.impl;
 
 import com.riaboshapka.exceptions.BusinessException;
 import com.riaboshapka.validators.ValidationService;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.OPCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,12 @@ public class ValidationServiceImpl implements ValidationService {
     private static final int AGE_LIMITATION = 200;
 
     private static final List<String> OPERATORS_CODES = new ArrayList<>();
+
+    static {
+        OPERATORS_CODES.add(CODE_KIYVSTAR_067);
+        OPERATORS_CODES.add(CODE_KIYVSTAR_097);
+        OPERATORS_CODES.add(CODE_VODAFONE_050);
+    }
 
     // taken from the service layer
     @Override
@@ -39,10 +46,6 @@ public class ValidationServiceImpl implements ValidationService {
     @Override
     public void validatePhone(String phone) throws BusinessException {
         String mobileCode = phone.substring(0, 3);
-        //System.out.println(mobileCode);
-        OPERATORS_CODES.add(CODE_KIYVSTAR_067);
-        OPERATORS_CODES.add(CODE_KIYVSTAR_097);
-        OPERATORS_CODES.add(CODE_VODAFONE_050);
         if (phone.length() != 10) {
             throw new BusinessException("Incorrect length of phone!!!" +
                     " The length of phone has to have 10 digits");
