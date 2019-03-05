@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+Never used after ProductDBDao.java was created
+ */
+
 public class ProductDaoImpl implements ProductDao {
 
     // the object is only in one copy

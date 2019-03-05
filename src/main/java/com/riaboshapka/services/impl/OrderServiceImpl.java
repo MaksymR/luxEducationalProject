@@ -1,6 +1,6 @@
 package com.riaboshapka.services.impl;
 
-import com.riaboshapka.dao.OrderDao;
+import com.riaboshapka.dao.impl.OrderDBDao;
 import com.riaboshapka.domain.Client;
 import com.riaboshapka.domain.Order;
 import com.riaboshapka.domain.Product;
@@ -10,16 +10,16 @@ import java.util.List;
 
 public class OrderServiceImpl implements OrderService {
 
-    private OrderDao orderDao;
+    private OrderDBDao orderDBDao;
 
-    public OrderServiceImpl(OrderDao orderDao) {
-        this.orderDao = orderDao;
+    public OrderServiceImpl(OrderDBDao orderDBDao) {
+        this.orderDBDao = orderDBDao;
     }
 
     @Override
     public void createOrder(Client client, List<Product> products) {
         Order order = new Order(client, products);
-        boolean result = orderDao.saveOrder(order);
+        boolean result = orderDBDao.saveOrder(order);
         if (result) {
             System.out.println("Product Saved: " + order);
         }
@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderDao.getAllOrders();
+        return orderDBDao.getAllOrders();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
             if (orderId == id) {
                 order.setClient(clientForModifyOrder);
                 order.setProducts(productsListForModifyOrder);
-                boolean result = orderDao.modifyOrder(id, order);
+                boolean result = orderDBDao.modifyOrder(id, order);
                 if (result) {
                     System.out.println("Order Saved: " + order);
                 }
@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
         for (Order order : getAllOrders()) {
             long orderId = order.getId();
             if (orderId == id) {
-                boolean result = orderDao.deleteOrder(id);
+                boolean result = orderDBDao.deleteOrder(id);
                 if (result) {
                     System.out.println("Order Deleted: " + order);
                 }

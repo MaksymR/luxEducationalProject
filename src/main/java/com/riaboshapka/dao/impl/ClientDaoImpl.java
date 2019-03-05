@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/*
+Never used after ClientDBDao.java was created
+ */
 public class ClientDaoImpl implements ClientDao {
 
     // the object is only in one copy

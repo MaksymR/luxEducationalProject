@@ -59,7 +59,7 @@ public class ClientDBDao implements ClientDao {
             statement.setInt(3, client.getAge());
             statement.setString(4, client.getPhone());
             statement.setString(5, client.getEmail());
-            System.out.println("Client Saved: " + client);
+            System.out.println("Client Modified: " + client);
             return statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! CLIENT DIDN'T FIND FOR MODIFYING!!!");
@@ -91,13 +91,13 @@ public class ClientDBDao implements ClientDao {
 
     @Override
     public boolean deleteClient(long clientId) {
-        Client client = findClient(clientId);
+        Client clientForDelete = findClient(clientId);
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement(
                      "DELETE FROM CLIENTS WHERE ID = ?")) {
             System.out.println("Deleting... Please wait");
             statement.setLong(1, clientId);
-            System.out.println("Client Deleted: " + client);
+            System.out.println("Client Deleted: " + clientForDelete);
             return statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! CLIENT DIDN'T FIND FOR DELETING!!!");

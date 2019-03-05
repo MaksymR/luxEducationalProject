@@ -49,6 +49,8 @@ public class ClientMenu {
                 case "5":
                     showAllOrders();
                     break;
+                case "R":
+                    return;
                 case "E":
                     return;
                 default:

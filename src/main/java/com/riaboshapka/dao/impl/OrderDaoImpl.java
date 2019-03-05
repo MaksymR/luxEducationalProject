@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+Never used after OrderDBDao.java was created
+ */
+
 public class OrderDaoImpl implements OrderDao {
 
     private static OrderDao orderDao;
@@ -38,9 +42,9 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public boolean deleteOrder(long id) {
+    public boolean deleteOrder(long orderId) {
         System.out.println("Deleting... Please wait");
-        map.remove(id);
+        map.remove(orderId);
         return true;
     }
 

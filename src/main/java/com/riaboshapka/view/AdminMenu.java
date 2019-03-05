@@ -68,6 +68,8 @@ public class AdminMenu {
                 case "11":
                     showAllOrders();
                     break;
+                case "R":
+                    return;
                 case "E":
                     return;
                 default:

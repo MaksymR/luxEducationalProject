@@ -72,7 +72,7 @@ public class ProductDBDao implements ProductDao {
             statement.setLong(3, id);
             statement.setString(1, product.getName());
             statement.setBigDecimal(2, product.getPrice());
-            System.out.println("Product Saved: " + product);
+            System.out.println("Product Modified: " + product);
             return statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! PRODUCT DIDN'T FIND FOR MODIFYING!!!");
@@ -82,16 +82,16 @@ public class ProductDBDao implements ProductDao {
 
     @Override
     public boolean deleteProduct(long productId) {
-        Product product = findProduct(productId);
+        Product productForDelete = findProduct(productId);
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement(
                      "DELETE FROM PRODUCTS WHERE ID = ?")) {
             System.out.println("Deleting... Please wait");
             statement.setLong(1, productId);
-            System.out.println("Product Deleted: " + product);
+            System.out.println("Product Deleted: " + productForDelete);
             return statement.execute();
         } catch (SQLException e) {
-            System.out.println("SOMETHING WAS GOING WRONG!!! CLIENT DIDN'T FIND FOR DELETING!!!");
+            System.out.println("SOMETHING WAS GOING WRONG!!! PRODUCT DIDN'T FIND FOR DELETING!!!");
         }
         return false;
     }
