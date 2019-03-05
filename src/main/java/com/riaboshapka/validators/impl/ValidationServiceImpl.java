@@ -10,12 +10,14 @@ public class ValidationServiceImpl implements ValidationService {
     private static final String CODE_KIYVSTAR_067 = "067";
     private static final String CODE_KIYVSTAR_097 = "097";
     private static final String CODE_VODAFONE_050 = "050";
+    private static final int INITIAL_AGE = 0;
+    private static final int AGE_LIMITATION = 200;
 
 
     // taken from the service layer
     @Override
     public void validateAge(int age) throws BusinessException {
-        if (age < 0 || age > 200) {
+        if (age < INITIAL_AGE || age > AGE_LIMITATION) {
             throw new BusinessException("Incorrect age!!! Enter age from 0 to 200 years");
         }
     }
