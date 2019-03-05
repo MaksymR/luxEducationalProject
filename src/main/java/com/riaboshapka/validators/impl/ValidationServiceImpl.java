@@ -4,6 +4,7 @@ import com.riaboshapka.exceptions.BusinessException;
 import com.riaboshapka.validators.ValidationService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ValidationServiceImpl implements ValidationService {
 
@@ -13,6 +14,7 @@ public class ValidationServiceImpl implements ValidationService {
     private static final int INITIAL_AGE = 0;
     private static final int AGE_LIMITATION = 200;
 
+    private static final List<String> OPERATORS_CODES = new ArrayList<>();
 
     // taken from the service layer
     @Override
@@ -38,15 +40,14 @@ public class ValidationServiceImpl implements ValidationService {
     public void validatePhone(String phone) throws BusinessException {
         String mobileCode = phone.substring(0, 3);
         //System.out.println(mobileCode);
-        ArrayList<String> operatorsCodes = new ArrayList<>();
-        operatorsCodes.add(CODE_KIYVSTAR_067);
-        operatorsCodes.add(CODE_KIYVSTAR_097);
-        operatorsCodes.add(CODE_VODAFONE_050);
+        OPERATORS_CODES.add(CODE_KIYVSTAR_067);
+        OPERATORS_CODES.add(CODE_KIYVSTAR_097);
+        OPERATORS_CODES.add(CODE_VODAFONE_050);
         if (phone.length() != 10) {
             throw new BusinessException("Incorrect length of phone!!!" +
                     " The length of phone has to have 10 digits");
         }
-        if (!operatorsCodes.contains(mobileCode)) {
+        if (!OPERATORS_CODES.contains(mobileCode)) {
             throw new BusinessException("Incorrect mobile operator!!!" +
                     " Mobile operator has to have next code \"067\" or \"097\" or \"050\"");
         }
