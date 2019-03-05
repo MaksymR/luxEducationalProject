@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class ValidationServiceImpl implements ValidationService {
 
-    private static final String Code_Kiyvstar067 = "067";
-    private static final String Code_Kiyvstar097 = "097";
-    private static final String Code_Vodafone050 = "050";
+    private static final String CODE_KIYVSTAR_067 = "067";
+    private static final String CODE_KIYVSTAR_097 = "097";
+    private static final String CODE_VODAFONE_050 = "050";
 
 
     // taken from the service layer
@@ -41,9 +41,9 @@ public class ValidationServiceImpl implements ValidationService {
         String mobileCode = phone.substring(0, 3);
         //System.out.println(mobileCode);
         ArrayList<String> operatorsCodes = new ArrayList<>();
-        operatorsCodes.add(Code_Kiyvstar067);
-        operatorsCodes.add(Code_Kiyvstar097);
-        operatorsCodes.add(Code_Vodafone050);
+        operatorsCodes.add(CODE_KIYVSTAR_067);
+        operatorsCodes.add(CODE_KIYVSTAR_097);
+        operatorsCodes.add(CODE_VODAFONE_050);
         if (phone.length() != 10) {
             throw new BusinessException("Incorrect length of phone!!!" +
                     " The length of phone has to have 10 digits");
