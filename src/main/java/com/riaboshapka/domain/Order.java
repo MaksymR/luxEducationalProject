@@ -1,6 +1,7 @@
 package com.riaboshapka.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Order {
 
@@ -50,5 +51,20 @@ public class Order {
                 ", client=" + client +
                 ", products=" + products +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                Objects.equals(client, order.client) &&
+                Objects.equals(products, order.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, client, products);
     }
 }

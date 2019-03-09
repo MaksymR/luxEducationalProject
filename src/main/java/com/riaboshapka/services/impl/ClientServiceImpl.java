@@ -42,7 +42,7 @@ public class ClientServiceImpl implements ClientService {
                     return;
                 }
             }
-            Client client = new Client(name, surname, age, email, phone);
+            Client client = new Client(name, surname, age, phone, email);
             boolean result = clientDBDao.saveClient(client);
             if (result) {
                 System.out.println("Client Saved: " + client);
