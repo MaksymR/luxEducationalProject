@@ -47,13 +47,13 @@ public class ClientDBDaoTest {
         name = "";
         surname = "";
         age = 0;
-        phone = "0671231212";
-        email = "test@test.com";
+        phone = "";
+        email = "";
         expectedBooleanResult = false;
     }
 
     @Test(expected = SQLException.class)
-    public void saveClient() throws SQLException{
+    public void saveClient() throws SQLException {
         //GIVEN
         connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
         Client clientForSave = new Client(name, surname, age, phone, email);
@@ -77,7 +77,7 @@ public class ClientDBDaoTest {
     }
 
     @Test(expected = SQLException.class)
-    public void getAllClients() throws SQLException{
+    public void getAllClients() throws SQLException {
         //GIVEN
         connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
         Client clientForList = new Client(name, surname, age, phone, email);
@@ -91,7 +91,7 @@ public class ClientDBDaoTest {
     }
 
     @Test(expected = SQLException.class)
-    public void deleteClient() throws SQLException{
+    public void deleteClient() throws SQLException {
         //GIVEN
         connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
         //WHEN
