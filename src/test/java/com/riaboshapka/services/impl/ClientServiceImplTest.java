@@ -41,7 +41,7 @@ public class ClientServiceImplTest {
         age = 10;
         failAge = 201;
         phone = "067_123_12_12";
-        failPhone = "060_111_11_11";
+        failPhone = "0601111111";
         email = "test@test.com";
         failEmail = "test.com";
         expectedBooleanResult = true;
