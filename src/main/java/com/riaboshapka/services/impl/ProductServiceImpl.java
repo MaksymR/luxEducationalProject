@@ -25,11 +25,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return productDBDao.getAllProducts();
-    }
-
-    @Override
     public void modifyProduct(long id, String productName, BigDecimal productPrice) {
         for (Product product : getAllProducts()) {
             long productId = product.getId();
@@ -42,6 +37,11 @@ public class ProductServiceImpl implements ProductService {
                 }
             }
         }
+    }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productDBDao.getAllProducts();
     }
 
     @Override

@@ -215,14 +215,14 @@ public class ClientServiceImplTest {
         Client clientForList = new Client(name, surname, age, phone, email);
         List<Client> expectedClientsList = new ArrayList<>();
         expectedClientsList.add(clientForList);
-        List<Client> clientListFromMock = new ArrayList<>();
+        List<Client> clientsListFromMock = new ArrayList<>();
         Client clientForMock = new Client(name, surname, age, phone, email);
-        clientListFromMock.add(clientForMock);
-        when(clientDBDaoForTestMock.getAllClients()).thenReturn(clientListFromMock);
+        clientsListFromMock.add(clientForMock);
+        when(clientDBDaoForTestMock.getAllClients()).thenReturn(clientsListFromMock);
         //WHEN
-        List<Client> clientList = clientServiceForTest.getAllClients();
+        List<Client> clientsList = clientServiceForTest.getAllClients();
         //THEN
-        assertEquals(expectedClientsList, clientList);
+        assertEquals(expectedClientsList, clientsList);
         verify(clientDBDaoForTestMock, times(1)).getAllClients();
     }
 
