@@ -2,7 +2,7 @@ package com.riaboshapka.dao;
 
 import com.riaboshapka.domain.Order;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface OrderDao {
 
@@ -20,7 +20,7 @@ public interface OrderDao {
      *
      * @return list of all products
      */
-    ArrayList<Order> getAllOrders();
+    List<Order> getAllOrders();
 
 
     /**

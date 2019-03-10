@@ -26,11 +26,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getAllOrders() {
-        return orderDBDao.getAllOrders();
-    }
-
-    @Override
     public void modifyOrder(long id, Client clientForModifyOrder, List<Product> productsListForModifyOrder) {
         for (Order order : getAllOrders()) {
             long orderId = order.getId();
@@ -43,6 +38,11 @@ public class OrderServiceImpl implements OrderService {
                 }
             }
         }
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderDBDao.getAllOrders();
     }
 
     @Override

@@ -58,7 +58,7 @@ public class OrderDBDao implements OrderDao {
     }
 
     @Override
-    public ArrayList<Order> getAllOrders() {
+    public List<Order> getAllOrders() {
         List<Order> resultOrdersList = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              Statement statement = connection.createStatement()) {
@@ -83,7 +83,7 @@ public class OrderDBDao implements OrderDao {
         } catch (SQLException e) {
             System.out.println("ORDERS DIDN'T FIND!!!");
         }
-        return (ArrayList<Order>) resultOrdersList;
+        return resultOrdersList;
     }
 
     @Override
