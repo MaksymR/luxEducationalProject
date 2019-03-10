@@ -31,16 +31,16 @@ public class ClientDBDao implements ClientDao {
     @Override
     public boolean saveClient(Client client) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
-             PreparedStatement statement = connection.prepareStatement(
+             PreparedStatement preparedStatement = connection.prepareStatement(
                      "INSERT INTO CLIENTS (NAME, SURNAME, AGE, PHONE, EMAIL) VALUES(?, ?, ?, ?, ?)")) {
             System.out.println("Saving.... Please wait");
-            statement.setString(1, client.getName());
-            statement.setString(2, client.getSurname());
-            statement.setInt(3, client.getAge());
-            statement.setString(4, client.getPhone());
-            statement.setString(5, client.getEmail());
+            preparedStatement.setString(1, client.getName());
+            preparedStatement.setString(2, client.getSurname());
+            preparedStatement.setInt(3, client.getAge());
+            preparedStatement.setString(4, client.getPhone());
+            preparedStatement.setString(5, client.getEmail());
             System.out.println("Client Saved: " + client);
-            return statement.execute();
+            return preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!!");
         }

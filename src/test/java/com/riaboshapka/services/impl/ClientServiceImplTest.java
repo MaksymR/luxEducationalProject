@@ -40,7 +40,7 @@ public class ClientServiceImplTest {
         surname = "test";
         age = 10;
         failAge = 201;
-        phone = "067_123_12_12";
+        phone = "0671231212";
         failPhone = "0601111111";
         email = "test@test.com";
         failEmail = "test.com";
