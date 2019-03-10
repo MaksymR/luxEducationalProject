@@ -21,25 +21,51 @@ public class ClientServiceImplTest {
     private ClientDBDao clientDBDaoForTestMock = mock(ClientDBDao.class);
     private ValidationService validationServiceForTestMock = mock(ValidationService.class);
     private ClientServiceImpl clientServiceForTest;
+    private long id;
+    private String name;
+    private String surname;
+    private int age;
+    private int failAge;
+    private String phone;
+    private String failPhone;
+    private String email;
+    private String failEmail;
+    private boolean expectedBooleanResult;
 
     @Before
     public void setUp() throws Exception {
         clientServiceForTest = new ClientServiceImpl(clientDBDaoForTestMock, validationServiceForTestMock);
+        id = 0L;
+        name = "test";
+        surname = "test";
+        age = 10;
+        failAge = 201;
+        phone = "067_123_12_12";
+        failPhone = "060_111_11_11";
+        email = "test@test.com";
+        failEmail = "test.com";
+        expectedBooleanResult = true;
     }
 
     @After
     public void tearDown() throws Exception {
         clientServiceForTest = null;
+        id = 0L;
+        name = "";
+        surname = "";
+        age = 0;
+        failAge = 0;
+        phone = "";
+        failPhone = "";
+        email = "";
+        failEmail = "";
+        expectedBooleanResult = false;
     }
 
     @Test
     public void createClientViaConstructorWithSameArguments() {
         //GIVEN
-        String name = "test";
-        String surname = "test";
-        String phone = "0671231212";
         Client clientForMock = new Client(name, surname, phone);
-        boolean expectedBooleanResult = true;
         when(clientDBDaoForTestMock.saveClient(clientForMock)).thenReturn(expectedBooleanResult);
         //WHEN
         clientServiceForTest.createClient(name, surname, phone);
@@ -50,13 +76,7 @@ public class ClientServiceImplTest {
     @Test
     public void createClientViaConstructorWithAllArguments() {
         //GIVEN
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
         Client clientForMock = new Client(name, surname, age, phone, email);
-        boolean expectedBooleanResult = true;
         when(clientDBDaoForTestMock.saveClient(clientForMock)).thenReturn(expectedBooleanResult);
         //WHEN
         clientServiceForTest.createClient(name, surname, age, phone, email);
@@ -67,12 +87,6 @@ public class ClientServiceImplTest {
     @Test(expected = BusinessException.class)
     public void createClientExceptionWithAge() throws BusinessException {
         //GIVEN
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
-        int failAge = 201;
         ValidationService validationService = new ValidationServiceImpl();
         validationService.validateAge(failAge);
         //WHEN
@@ -84,12 +98,6 @@ public class ClientServiceImplTest {
     @Test(expected = BusinessException.class)
     public void createClientExceptionWithEmail() throws BusinessException {
         //GIVEN
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
-        String failEmail = "test.com";
         ValidationService validationService = new ValidationServiceImpl();
         validationService.validateEmail(failEmail);
         //WHEN
@@ -101,12 +109,6 @@ public class ClientServiceImplTest {
     @Test(expected = BusinessException.class)
     public void createClientExceptionWithPhone() throws BusinessException {
         //GIVEN
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
-        String failPhone = "060_111_11_11";
         ValidationService validationService = new ValidationServiceImpl();
         validationService.validatePhone(failPhone);
         //WHEN
@@ -119,12 +121,7 @@ public class ClientServiceImplTest {
     @Test
     public void modifyClientWithSameArguments() {
         //GIVEN
-        long id = 0L;
-        String name = "test";
-        String surname = "test";
-        String phone = "0671231212";
         Client clientForMock = new Client(name, surname, phone);
-        boolean expectedBooleanResult = true;
         when(clientDBDaoForTestMock.modifyClient(id, clientForMock)).thenReturn(expectedBooleanResult);
         //WHEN
         clientServiceForTest.modifyClient(id, name, surname, phone);
@@ -135,14 +132,7 @@ public class ClientServiceImplTest {
     @Test
     public void modifyClientViaConstructorWithAllArguments() {
         //GIVEN
-        long id = 0L;
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
         Client clientForMock = new Client(name, surname, age, phone, email);
-        boolean expectedBooleanResult = true;
         when(clientDBDaoForTestMock.modifyClient(id, clientForMock)).thenReturn(expectedBooleanResult);
         //WHEN
         clientServiceForTest.modifyClient(id, name, surname, age, phone, email);
@@ -153,13 +143,6 @@ public class ClientServiceImplTest {
     @Test(expected = BusinessException.class)
     public void modifyClientExceptionWithAge() throws BusinessException {
         //GIVEN
-        long id = 0L;
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
-        int failAge = 201;
         ValidationService validationService = new ValidationServiceImpl();
         validationService.validateAge(failAge);
         //WHEN
@@ -171,13 +154,6 @@ public class ClientServiceImplTest {
     @Test(expected = BusinessException.class)
     public void modifyClientExceptionWithEmail() throws BusinessException {
         //GIVEN
-        long id = 0L;
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
-        String failEmail = "test.com";
         ValidationService validationService = new ValidationServiceImpl();
         validationService.validateEmail(failEmail);
         //WHEN
@@ -189,13 +165,6 @@ public class ClientServiceImplTest {
     @Test(expected = BusinessException.class)
     public void modifyClientExceptionWithPhone() throws BusinessException {
         //GIVEN
-        long id = 0L;
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
-        String failPhone = "060_111_11_11";
         ValidationService validationService = new ValidationServiceImpl();
         validationService.validatePhone(failPhone);
         //WHEN
@@ -207,16 +176,11 @@ public class ClientServiceImplTest {
     @Test
     public void getAllClients() {
         //GIVEN
-        String name = "test";
-        String surname = "test";
-        int age = 10;
-        String phone = "0671231212";
-        String email = "test@test.com";
         Client clientForList = new Client(name, surname, age, phone, email);
         List<Client> expectedClientsList = new ArrayList<>();
         expectedClientsList.add(clientForList);
-        List<Client> clientsListFromMock = new ArrayList<>();
         Client clientForMock = new Client(name, surname, age, phone, email);
+        List<Client> clientsListFromMock = new ArrayList<>();
         clientsListFromMock.add(clientForMock);
         when(clientDBDaoForTestMock.getAllClients()).thenReturn(clientsListFromMock);
         //WHEN
@@ -229,8 +193,6 @@ public class ClientServiceImplTest {
     @Test
     public void deleteClient() {
         //GIVEN
-        long id = 0L;
-        boolean expectedBooleanResult = true;
         when(clientDBDaoForTestMock.deleteClient(id)).thenReturn(expectedBooleanResult);
         //WHEN
         clientServiceForTest.deleteClient(id);
