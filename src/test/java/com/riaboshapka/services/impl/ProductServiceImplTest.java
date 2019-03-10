@@ -49,10 +49,6 @@ public class ProductServiceImplTest {
     @Test
     public void createProduct() {
         //GIVEN
-//        String name = "apple";
-//        BigDecimal price = BigDecimal.valueOf(20);
-//        Product productForMock = new Product(name, price);
-//        boolean expectedBooleanResult = true;
         when(productDBDaoForMock.saveProduct(productForMock)).thenReturn(expectedBooleanResult);
         //WHEN
         productServiceForTest.createProduct(name, price);
@@ -63,11 +59,6 @@ public class ProductServiceImplTest {
     @Test
     public void modifyProduct() {
         //GIVEN
-//        long id = 0L;
-//        String name = "apple";
-//        BigDecimal price = BigDecimal.valueOf(20);
-//        Product productForMock = new Product(name, price);
-//        boolean expectedBooleanResult = true;
         when(productDBDaoForMock.modifyProduct(id, productForMock)).thenReturn(expectedBooleanResult);
         //WHEN
         productServiceForTest.modifyProduct(id, name, price);
@@ -78,12 +69,8 @@ public class ProductServiceImplTest {
     @Test
     public void getAllProducts() {
         //GIVEN
-//        String name = "apple";
-//        BigDecimal price = BigDecimal.valueOf(20);
-//        Product productForList = new Product(name, price);
         List<Product> expectedProductsList = new ArrayList<>();
         expectedProductsList.add(productForList);
-//        Product productForMock = new Product(name, price);
         List<Product> productsListForMock = new ArrayList<>();
         productsListForMock.add(productForMock);
         when(productDBDaoForMock.getAllProducts()).thenReturn(productsListForMock);
@@ -97,8 +84,6 @@ public class ProductServiceImplTest {
     @Test
     public void delete() {
         //GIVEN
-//        long id = 0L;
-//        boolean expectedBooleanResult = true;
         when(productDBDaoForMock.deleteProduct(id)).thenReturn(expectedBooleanResult);
         //WHEN
         productServiceForTest.delete(id);
