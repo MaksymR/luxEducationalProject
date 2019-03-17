@@ -85,6 +85,7 @@ public class ClientDBDao implements ClientDao {
             }
         } catch (SQLException e) {
             System.out.println("CLIENTS DIDN'T FIND!!!");
+            e.printStackTrace();
         }
         return resultClientsList;
     }
