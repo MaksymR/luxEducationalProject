@@ -34,14 +34,6 @@ public class ClientServiceImpl implements ClientService {
             validationService.validateAge(age);
             validationService.validateEmail(email);
             validationService.validatePhone(phone);
-            List<Client> tempListOfClients = getAllClients();
-            for (Client tempClient : tempListOfClients) {
-                String checkedPhone = tempClient.getPhone();
-                if (checkedPhone.equals(phone)) {
-                    System.out.println("Сan not register because this phone number is already registered");
-                    return;
-                }
-            }
             Client client = new Client(name, surname, age, phone, email);
             boolean result = clientDBDao.saveClient(client);
             if (result) {

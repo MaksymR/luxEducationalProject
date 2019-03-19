@@ -2,6 +2,7 @@ package com.riaboshapka.dao.impl;
 
 import com.riaboshapka.dao.ClientDao;
 import com.riaboshapka.domain.Client;
+import org.h2.message.DbException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class ClientDBDao implements ClientDao {
             statement.execute(
                     "CREATE TABLE IF NOT EXISTS CLIENTS(ID BIGINT DEFAULT 1 PRIMARY KEY AUTO_INCREMENT," +
                             " NAME VARCHAR(20) DEFAULT NULL, SURNAME VARCHAR(20) DEFAULT NULL," +
-                            " AGE INT DEFAULT 0, PHONE VARCHAR(20) DEFAULT NULL," +
+                            " AGE INT DEFAULT 0, PHONE VARCHAR(20) DEFAULT NULL UNIQUE," +
                             " EMAIL VARCHAR(50) DEFAULT NULL )"
             );
 
@@ -50,6 +51,7 @@ public class ClientDBDao implements ClientDao {
             return preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println("WHEN SAVING A CLIENT, SOMETHING WENT WRONG!!!");
+            e.printStackTrace();
         }
         return false;
     }
