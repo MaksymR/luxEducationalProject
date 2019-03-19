@@ -18,13 +18,14 @@ public class ClientDBDao implements ClientDao {
              Statement statement = connection.createStatement()) {
 
             statement.execute(
-                    "CREATE TABLE IF NOT EXISTS CLIENTS(ID BIGINT PRIMARY KEY AUTO_INCREMENT," +
-                            " NAME VARCHAR(20), SURNAME VARCHAR(20), AGE INT, PHONE VARCHAR(20)," +
-                            " EMAIL VARCHAR(50))"
+                    "CREATE TABLE IF NOT EXISTS CLIENTS(ID BIGINT DEFAULT 1 PRIMARY KEY AUTO_INCREMENT," +
+                            " NAME VARCHAR(20) DEFAULT NULL, SURNAME VARCHAR(20) DEFAULT NULL," +
+                            " AGE INT DEFAULT 0, PHONE VARCHAR(20) DEFAULT NULL," +
+                            " EMAIL VARCHAR(50) DEFAULT NULL )"
             );
 
         } catch (SQLException e) {
-            System.out.println("SOMETHING IS GOING WRONG!!!");
+            System.out.println("WHEN CREATING A TABLE, SOMETHING WENT WRONG!!!");
         }
     }
 
@@ -39,10 +40,16 @@ public class ClientDBDao implements ClientDao {
             preparedStatement.setInt(3, client.getAge());
             preparedStatement.setString(4, client.getPhone());
             preparedStatement.setString(5, client.getEmail());
-            System.out.println("Client Saved: " + client);
+            System.out.println("Client Saved: " + "Client{" +
+                    "name='" + client.getName() + '\'' +
+                    ", surname='" + client.getSurname() + '\'' +
+                    ", age=" + client.getAge() +
+                    ", phone='" + client.getPhone() + '\'' +
+                    ", email='" + client.getEmail() + '\'' +
+                    '}');
             return preparedStatement.execute();
         } catch (SQLException e) {
-            System.out.println("SOMETHING WAS GOING WRONG!!!");
+            System.out.println("WHEN SAVING A CLIENT, SOMETHING WENT WRONG!!!");
         }
         return false;
     }
