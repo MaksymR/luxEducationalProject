@@ -80,17 +80,17 @@ public class ClientDBDao implements ClientDao {
     public List<Client> getAllClients() {
         List<Client> resultClientsList = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
-             Statement statement = connection.createStatement()) {
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS")) {
-                while (resultSet.next()) {
-                    long id = resultSet.getLong(1);
-                    String name = resultSet.getString(2);
-                    String surname = resultSet.getString("SURNAME");
-                    int age = resultSet.getInt("AGE");
-                    String phone = resultSet.getString("PHONE");
-                    String email = resultSet.getString("EMAIL");
-                    resultClientsList.add(new Client(id, name, surname, age, phone, email));
-                }
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS")) {
+//            ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS");
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String name = resultSet.getString(2);
+                String surname = resultSet.getString("SURNAME");
+                int age = resultSet.getInt("AGE");
+                String phone = resultSet.getString("PHONE");
+                String email = resultSet.getString("EMAIL");
+                resultClientsList.add(new Client(id, name, surname, age, phone, email));
             }
         } catch (SQLException e) {
             System.out.println("CLIENTS DIDN'T FIND!!!");
