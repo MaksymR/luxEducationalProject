@@ -20,10 +20,12 @@ public class OrderDBDao implements OrderDao {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              Statement statement = connection.createStatement()) {
             statement.execute(
-                    "CREATE TABLE IF NOT EXISTS ORDERS(ID BIGINT PRIMARY KEY AUTO_INCREMENT," +
-                            " CLIENT_ID BIGINT, CLIENT_NAME VARCHAR(20), CLIENT_SURNAME VARCHAR(20), CLIENT_AGE INT," +
-                            " CLIENT_PHONE VARCHAR(20), CLIENT_EMAIL VARCHAR(50)," +
-                            " PRODUCT_ID BIGINT, PRODUCT_NAME VARCHAR(20), PRODUCT_PRICE DECIMAL)"
+                    "CREATE TABLE IF NOT EXISTS ORDERS(ID BIGINT DEFAULT 1 PRIMARY KEY AUTO_INCREMENT," +
+                            " CLIENT_ID BIGINT DEFAULT 1, CLIENT_NAME VARCHAR(20) DEFAULT NULL," +
+                            " CLIENT_SURNAME VARCHAR(20) DEFAULT NULL, CLIENT_AGE INT DEFAULT 0," +
+                            " CLIENT_PHONE VARCHAR(20) DEFAULT NULL, CLIENT_EMAIL VARCHAR(50) DEFAULT NULL," +
+                            " PRODUCT_ID BIGINT DEFAULT 1, PRODUCT_NAME VARCHAR(20) DEFAULT NULL," +
+                            " PRODUCT_PRICE DECIMAL DEFAULT NULL)"
             );
         } catch (SQLException e) {
             System.out.println("SOMETHING IS GOING WRONG!!!");
@@ -50,7 +52,10 @@ public class OrderDBDao implements OrderDao {
                 statement.setBigDecimal(9, product.getPrice());
                 statement.execute();
             }
-            System.out.println("Order Saved: " + order);
+            System.out.println("Order Saved: " + "Order{" +
+                    "client=" + order.getClient() +
+                    ", products=" + order.getProducts() +
+                    '}');
         } catch (SQLException e) {
             System.out.println("SOMETHING OF SAVING WAS GOING WRONG!!!");
         }
