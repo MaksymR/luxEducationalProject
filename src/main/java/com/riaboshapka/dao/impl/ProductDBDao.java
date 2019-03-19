@@ -39,7 +39,7 @@ public class ProductDBDao implements ProductDao {
                     "name='" + product.getName() + '\'' +
                     ", price=" + product.getPrice() +
                     '}');
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!!");
         }
@@ -74,7 +74,7 @@ public class ProductDBDao implements ProductDao {
             statement.setString(1, product.getName());
             statement.setBigDecimal(2, product.getPrice());
             System.out.println("Product Modified: " + product);
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! PRODUCT DIDN'T FIND FOR MODIFYING!!!");
         }
@@ -90,7 +90,7 @@ public class ProductDBDao implements ProductDao {
             System.out.println("Deleting... Please wait");
             statement.setLong(1, productId);
             System.out.println("Product Deleted: " + productForDelete);
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! PRODUCT DIDN'T FIND FOR DELETING!!!");
         }
