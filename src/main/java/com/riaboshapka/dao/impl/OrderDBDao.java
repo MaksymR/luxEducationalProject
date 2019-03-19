@@ -66,24 +66,23 @@ public class OrderDBDao implements OrderDao {
     public List<Order> getAllOrders() {
         List<Order> resultOrdersList = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
-             Statement statement = connection.createStatement()) {
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM ORDERS")) {
-                while (resultSet.next()) {
-                    long id = resultSet.getLong(1);
-                    long clientId = resultSet.getLong("CLIENT_ID");
-                    String clientName = resultSet.getString("CLIENT_NAME");
-                    String clientSurname = resultSet.getString("CLIENT_SURNAME");
-                    int clientAge = resultSet.getInt("CLIENT_AGE");
-                    String clientPhone = resultSet.getString("CLIENT_PHONE");
-                    String clientEmail = resultSet.getString("CLIENT_EMAIL");
-                    Client client = new Client(clientId, clientName, clientSurname, clientAge, clientPhone, clientEmail);
-                    long productId = resultSet.getLong("PRODUCT_ID");
-                    String productName = resultSet.getString("PRODUCT_NAME");
-                    BigDecimal productPrice = resultSet.getBigDecimal("PRODUCT_PRICE");
-                    List<Product> productsList = new ArrayList<>();
-                    productsList.add(new Product(productId, productName, productPrice));
-                    resultOrdersList.add(new Order(id, client, productsList));
-                }
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM ORDERS")) {
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                long clientId = resultSet.getLong("CLIENT_ID");
+                String clientName = resultSet.getString("CLIENT_NAME");
+                String clientSurname = resultSet.getString("CLIENT_SURNAME");
+                int clientAge = resultSet.getInt("CLIENT_AGE");
+                String clientPhone = resultSet.getString("CLIENT_PHONE");
+                String clientEmail = resultSet.getString("CLIENT_EMAIL");
+                Client client = new Client(clientId, clientName, clientSurname, clientAge, clientPhone, clientEmail);
+                long productId = resultSet.getLong("PRODUCT_ID");
+                String productName = resultSet.getString("PRODUCT_NAME");
+                BigDecimal productPrice = resultSet.getBigDecimal("PRODUCT_PRICE");
+                List<Product> productsList = new ArrayList<>();
+                productsList.add(new Product(productId, productName, productPrice));
+                resultOrdersList.add(new Order(id, client, productsList));
             }
         } catch (SQLException e) {
             System.out.println("ORDERS DIDN'T FIND!!!");
@@ -137,7 +136,7 @@ public class OrderDBDao implements OrderDao {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM ORDERS WHERE ID = ?")) {
             statement.setLong(1, orderId);
-            try (ResultSet resultSet = statement.executeQuery()) {
+            ResultSet resultSet = statement.executeQuery();
                 resultSet.next();
                 long id = resultSet.getLong(1);
                 long clientId = resultSet.getLong("CLIENT_ID");
@@ -152,8 +151,8 @@ public class OrderDBDao implements OrderDao {
                 BigDecimal productPrice = resultSet.getBigDecimal("PRODUCT_PRICE");
                 List<Product> productsList = new ArrayList<>();
                 productsList.add(new Product(productId, productName, productPrice));
+                resultSet.close();
                 return new Order(id, client, productsList);
-            }
         } catch (SQLException e) {
             System.out.println("ORDER DIDN'T FIND!!!");
         }
