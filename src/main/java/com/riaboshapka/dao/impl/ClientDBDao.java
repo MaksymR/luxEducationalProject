@@ -82,8 +82,8 @@ public class ClientDBDao implements ClientDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS")) {
             while (resultSet.next()) {
-                long id = resultSet.getLong(1);
-                String name = resultSet.getString(2);
+                long id = resultSet.getLong("ID");
+                String name = resultSet.getString("NAME");
                 String surname = resultSet.getString("SURNAME");
                 int age = resultSet.getInt("AGE");
                 String phone = resultSet.getString("PHONE");
@@ -118,12 +118,12 @@ public class ClientDBDao implements ClientDao {
             statement.setLong(1, clientId);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            long id = resultSet.getLong(1);
-            String name = resultSet.getString(2);
+            long id = resultSet.getLong("ID");
+            String name = resultSet.getString("NAME");
             String surname = resultSet.getString("SURNAME");
             int age = resultSet.getInt("AGE");
-            String phone = resultSet.getString(5);
-            String email = resultSet.getString(6);
+            String phone = resultSet.getString("PHONE");
+            String email = resultSet.getString("EMAIL");
             resultSet.close();
             return new Client(id, name, surname, age, phone, email);
         } catch (SQLException e) {

@@ -69,7 +69,7 @@ public class OrderDBDao implements OrderDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM ORDERS")) {
             while (resultSet.next()) {
-                long id = resultSet.getLong(1);
+                long id = resultSet.getLong("ID");
                 long clientId = resultSet.getLong("CLIENT_ID");
                 String clientName = resultSet.getString("CLIENT_NAME");
                 String clientSurname = resultSet.getString("CLIENT_SURNAME");
@@ -138,7 +138,7 @@ public class OrderDBDao implements OrderDao {
             statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
                 resultSet.next();
-                long id = resultSet.getLong(1);
+                long id = resultSet.getLong("ID");
                 long clientId = resultSet.getLong("CLIENT_ID");
                 String clientName = resultSet.getString("CLIENT_NAME");
                 String clientSurname = resultSet.getString("CLIENT_SURNAME");

@@ -54,8 +54,8 @@ public class ProductDBDao implements ProductDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM PRODUCTS")) {
             while (resultSet.next()) {
-                long id = resultSet.getLong(1);
-                String name = resultSet.getString(2);
+                long id = resultSet.getLong("ID");
+                String name = resultSet.getString("NAME");
                 BigDecimal price = resultSet.getBigDecimal("PRICE");
                 resultProductList.add(new Product(id, name, price));
             }
@@ -104,8 +104,8 @@ public class ProductDBDao implements ProductDao {
             statement.setLong(1, productId);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            long id = resultSet.getLong(1);
-            String name = resultSet.getString(2);
+            long id = resultSet.getLong("ID");
+            String name = resultSet.getString("NAME");
             BigDecimal price = resultSet.getBigDecimal("PRICE");
             resultSet.close();
             return new Product(id, name, price);
