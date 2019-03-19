@@ -5,16 +5,14 @@ import com.riaboshapka.domain.Client;
 import com.riaboshapka.domain.Order;
 import com.riaboshapka.domain.Product;
 
+import static com.riaboshapka.dao.impl.DataForConnectionToH2DB.*;
+
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDBDao implements OrderDao {
-
-    private static final String DB_URL = "jdbc:h2:tcp://localhost/~/LuxoftShop";
-    private static final String LOGIN = "test";
-    private static final String PASSWORD = "test";
 
     public OrderDBDao() {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
@@ -137,22 +135,22 @@ public class OrderDBDao implements OrderDao {
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM ORDERS WHERE ID = ?")) {
             statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
-                resultSet.next();
-                long id = resultSet.getLong("ID");
-                long clientId = resultSet.getLong("CLIENT_ID");
-                String clientName = resultSet.getString("CLIENT_NAME");
-                String clientSurname = resultSet.getString("CLIENT_SURNAME");
-                int clientAge = resultSet.getInt("CLIENT_AGE");
-                String clientPhone = resultSet.getString("CLIENT_PHONE");
-                String clientEmail = resultSet.getString("CLIENT_EMAIL");
-                Client client = new Client(clientId, clientName, clientSurname, clientAge, clientPhone, clientEmail);
-                long productId = resultSet.getLong("PRODUCT_ID");
-                String productName = resultSet.getString("PRODUCT_NAME");
-                BigDecimal productPrice = resultSet.getBigDecimal("PRODUCT_PRICE");
-                List<Product> productsList = new ArrayList<>();
-                productsList.add(new Product(productId, productName, productPrice));
-                resultSet.close();
-                return new Order(id, client, productsList);
+            resultSet.next();
+            long id = resultSet.getLong("ID");
+            long clientId = resultSet.getLong("CLIENT_ID");
+            String clientName = resultSet.getString("CLIENT_NAME");
+            String clientSurname = resultSet.getString("CLIENT_SURNAME");
+            int clientAge = resultSet.getInt("CLIENT_AGE");
+            String clientPhone = resultSet.getString("CLIENT_PHONE");
+            String clientEmail = resultSet.getString("CLIENT_EMAIL");
+            Client client = new Client(clientId, clientName, clientSurname, clientAge, clientPhone, clientEmail);
+            long productId = resultSet.getLong("PRODUCT_ID");
+            String productName = resultSet.getString("PRODUCT_NAME");
+            BigDecimal productPrice = resultSet.getBigDecimal("PRODUCT_PRICE");
+            List<Product> productsList = new ArrayList<>();
+            productsList.add(new Product(productId, productName, productPrice));
+            resultSet.close();
+            return new Order(id, client, productsList);
         } catch (SQLException e) {
             System.out.println("ORDER DIDN'T FIND!!!");
         }

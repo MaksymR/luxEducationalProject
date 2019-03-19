@@ -3,16 +3,15 @@ package com.riaboshapka.dao.impl;
 import com.riaboshapka.dao.ProductDao;
 import com.riaboshapka.domain.Product;
 
+import static com.riaboshapka.dao.impl.DataForConnectionToH2DB.*;
+
+
 import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDBDao implements ProductDao {
-
-    private static final String DB_URL = "jdbc:h2:tcp://localhost/~/LuxoftShop";
-    private static final String LOGIN = "test";
-    private static final String PASSWORD = "test";
 
     public ProductDBDao() {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);

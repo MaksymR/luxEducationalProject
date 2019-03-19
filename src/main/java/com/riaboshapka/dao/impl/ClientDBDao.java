@@ -3,15 +3,13 @@ package com.riaboshapka.dao.impl;
 import com.riaboshapka.dao.ClientDao;
 import com.riaboshapka.domain.Client;
 
+import static com.riaboshapka.dao.impl.DataForConnectionToH2DB.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDBDao implements ClientDao {
-
-    private static final String DB_URL = "jdbc:h2:tcp://localhost/~/LuxoftShop";
-    private static final String LOGIN = "test";
-    private static final String PASSWORD = "test";
 
     public ClientDBDao() {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
