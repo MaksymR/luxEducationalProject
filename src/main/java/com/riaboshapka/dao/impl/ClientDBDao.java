@@ -2,7 +2,6 @@ package com.riaboshapka.dao.impl;
 
 import com.riaboshapka.dao.ClientDao;
 import com.riaboshapka.domain.Client;
-import org.h2.message.DbException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -82,7 +81,6 @@ public class ClientDBDao implements ClientDao {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS")) {
-//            ResultSet resultSet = statement.executeQuery("SELECT * FROM CLIENTS");
             while (resultSet.next()) {
                 long id = resultSet.getLong(1);
                 String name = resultSet.getString(2);
@@ -118,16 +116,16 @@ public class ClientDBDao implements ClientDao {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENTS WHERE ID = ?")) {
             statement.setLong(1, clientId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                resultSet.next();
-                long id = resultSet.getLong(1);
-                String name = resultSet.getString(2);
-                String surname = resultSet.getString("SURNAME");
-                int age = resultSet.getInt("AGE");
-                String phone = resultSet.getString(5);
-                String email = resultSet.getString(6);
-                return new Client(id, name, surname, age, phone, email);
-            }
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            long id = resultSet.getLong(1);
+            String name = resultSet.getString(2);
+            String surname = resultSet.getString("SURNAME");
+            int age = resultSet.getInt("AGE");
+            String phone = resultSet.getString(5);
+            String email = resultSet.getString(6);
+            resultSet.close();
+            return new Client(id, name, surname, age, phone, email);
         } catch (SQLException e) {
             System.out.println("CLIENT DIDN'T FIND!!!");
         }
