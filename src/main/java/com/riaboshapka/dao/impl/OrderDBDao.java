@@ -123,7 +123,7 @@ public class OrderDBDao implements OrderDao {
             System.out.println("Deleting... Please wait");
             statement.setLong(1, orderId);
             System.out.println("Order Deleted: " + orderForDelete);
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! ORDER DIDN'T FIND FOR DELETING!!!");
         }
