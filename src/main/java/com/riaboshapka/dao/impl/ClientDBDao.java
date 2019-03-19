@@ -45,7 +45,7 @@ public class ClientDBDao implements ClientDao {
                     ", phone='" + client.getPhone() + '\'' +
                     ", email='" + client.getEmail() + '\'' +
                     '}');
-            return preparedStatement.execute();
+            preparedStatement.execute();
         } catch (SQLException e) {
             System.out.println("WHEN SAVING A CLIENT, SOMETHING WENT WRONG!!!");
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class ClientDBDao implements ClientDao {
             statement.setString(4, client.getPhone());
             statement.setString(5, client.getEmail());
             System.out.println("Client Modified: " + client);
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! CLIENT DIDN'T FIND FOR MODIFYING!!!");
         }
@@ -103,7 +103,7 @@ public class ClientDBDao implements ClientDao {
             System.out.println("Deleting... Please wait");
             statement.setLong(1, clientId);
             System.out.println("Client Deleted: " + clientForDelete);
-            return statement.execute();
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!! CLIENT DIDN'T FIND FOR DELETING!!!");
         }
