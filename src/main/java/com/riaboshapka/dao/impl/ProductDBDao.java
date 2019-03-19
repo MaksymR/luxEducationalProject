@@ -19,8 +19,8 @@ public class ProductDBDao implements ProductDao {
              Statement statement = connection.createStatement()) {
 
             statement.execute(
-                    "CREATE TABLE IF NOT EXISTS PRODUCTS(ID BIGINT PRIMARY KEY AUTO_INCREMENT," +
-                            " NAME VARCHAR(20), PRICE DECIMAL)"
+                    "CREATE TABLE IF NOT EXISTS PRODUCTS(ID BIGINT DEFAULT 1 PRIMARY KEY AUTO_INCREMENT," +
+                            " NAME VARCHAR(20) DEFAULT NULL, PRICE DECIMAL DEFAULT 0)"
             );
 
         } catch (SQLException e) {
@@ -36,7 +36,10 @@ public class ProductDBDao implements ProductDao {
             System.out.println("Saving.... Please wait");
             statement.setString(1, product.getName());
             statement.setBigDecimal(2, product.getPrice());
-            System.out.println("Product Saved: " + product);
+            System.out.println("Product Saved: " + "Product{" +
+                    "name='" + product.getName() + '\'' +
+                    ", price=" + product.getPrice() +
+                    '}');
             return statement.execute();
         } catch (SQLException e) {
             System.out.println("SOMETHING WAS GOING WRONG!!!");
@@ -48,14 +51,13 @@ public class ProductDBDao implements ProductDao {
     public List<Product> getAllProducts() {
         List<Product> resultProductList = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
-             Statement statement = connection.createStatement()) {
-            try (ResultSet resultSet = statement.executeQuery("SELECT * FROM PRODUCTS")) {
-                while (resultSet.next()) {
-                    long id = resultSet.getLong(1);
-                    String name = resultSet.getString(2);
-                    BigDecimal price = resultSet.getBigDecimal("PRICE");
-                    resultProductList.add(new Product(id, name, price));
-                }
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM PRODUCTS")) {
+            while (resultSet.next()) {
+                long id = resultSet.getLong(1);
+                String name = resultSet.getString(2);
+                BigDecimal price = resultSet.getBigDecimal("PRICE");
+                resultProductList.add(new Product(id, name, price));
             }
         } catch (SQLException e) {
             System.out.println("PRODUCTS DIDN'T FIND!!!");
@@ -100,13 +102,13 @@ public class ProductDBDao implements ProductDao {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM PRODUCTS WHERE ID = ?")) {
             statement.setLong(1, productId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                resultSet.next();
-                long id = resultSet.getLong(1);
-                String name = resultSet.getString(2);
-                BigDecimal price = resultSet.getBigDecimal("PRICE");
-                return new Product(id, name, price);
-            }
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            long id = resultSet.getLong(1);
+            String name = resultSet.getString(2);
+            BigDecimal price = resultSet.getBigDecimal("PRICE");
+            resultSet.close();
+            return new Product(id, name, price);
         } catch (SQLException e) {
             System.out.println("PRODUCT DIDN'T FIND!!!");
         }
