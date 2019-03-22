@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:constant id="in" static-field="java.lang.System.in"/>
+
+    <bean name="reader" class="java.io.InputStreamReader">
+        <constructor-arg name="in" ref="in"/>
+    </bean>
+
+    <bean id="bufferedReader" class="java.io.BufferedReader">
+        <constructor-arg name="in" ref="reader"/>
+    </bean>
+
+    <bean id="clientDao" class="com.riaboshapka.dao.impl.ClientDBDao"/>
+
+    <bean id="productDao" class="com.riaboshapka.dao.impl.ProductDBDao"/>
+
+    <bean id="orderDao" class="com.riaboshapka.dao.impl.OrderDBDao"/>
+
+    <bean id="validationService" class="com.riaboshapka.validators.impl.ValidationServiceImpl">
+        <!--<constructor-arg name="clientDao" ref="clientDao"/>-->
+    </bean>
+
+    <bean id="clientService" class="com.riaboshapka.services.impl.ClientServiceImpl">
+        <constructor-arg name="clientDBDao" ref="clientDao"/>
+        <constructor-arg name="validationService" ref="validationService"/>
+    </bean>
+
+    <bean id="productService" class="com.riaboshapka.services.impl.ProductServiceImpl">
+        <constructor-arg name="productDBDao" ref="productDao"/>
+    </bean>
+
+    <bean id="orderService" class="com.riaboshapka.services.impl.OrderServiceImpl">
+        <constructor-arg name="orderDBDao" ref="orderDao"/>
+    </bean>
+
+    <bean id="adminMenu" class="com.riaboshapka.view.AdminMenu" autowire="constructor"/>
+    <!--<constructor-arg name="clientService" value="clientService"/>-->
+    <!--<constructor-arg name="br" value="bufferedReader"/>-->
+    <!--</bean>-->
+
+    <bean id="clientMenu" class="com.riaboshapka.view.ClientMenu" autowire="constructor"/>
+
+    <bean id="menu" class="com.riaboshapka.view.MainMenu" autowire="constructor"/>
+
+
+</beans>

@@ -12,6 +12,8 @@ import com.riaboshapka.validators.impl.ValidationServiceImpl;
 import com.riaboshapka.view.AdminMenu;
 import com.riaboshapka.view.ClientMenu;
 import com.riaboshapka.view.MainMenu;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+//import sun.tools.java.ClassPath;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,18 +26,24 @@ public class App {
 
         // configured all necessary dependencies for this application
         // realizing of the dependency injection
-        ClientDBDao clientDBDao = new ClientDBDao();
-        ProductDBDao productDBDao = new ProductDBDao();
-        OrderDBDao orderDBDao = new OrderDBDao();
-        ValidationService validationService = new ValidationServiceImpl();
-        ClientService clientService = new ClientServiceImpl(clientDBDao, validationService);
-        ProductService productService = new ProductServiceImpl(productDBDao);
-        OrderService orderService = new OrderServiceImpl(orderDBDao);
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        AdminMenu adminMenu = new AdminMenu(br, clientService, productService, orderService);
-        ClientMenu clientMenu = new ClientMenu(br, clientService, productService, orderService);
 
-        MainMenu menu = new MainMenu(br, adminMenu, clientMenu);
+//        ClientDBDao clientDBDao = new ClientDBDao();
+//        ProductDBDao productDBDao = new ProductDBDao();
+//        OrderDBDao orderDBDao = new OrderDBDao();
+//        ValidationService validationService = new ValidationServiceImpl();
+//        ClientService clientService = new ClientServiceImpl(clientDBDao, validationService);
+//        ProductService productService = new ProductServiceImpl(productDBDao);
+//        OrderService orderService = new OrderServiceImpl(orderDBDao);
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        AdminMenu adminMenu = new AdminMenu(br, clientService, productService, orderService);
+//        ClientMenu clientMenu = new ClientMenu(br, clientService, productService, orderService);
+//
+//        MainMenu menu = new MainMenu(br, adminMenu, clientMenu);
+//        menu.showMenu();
+
+        // for Spirng classwork 20.03.2019
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("app.xml");
+        MainMenu menu = (MainMenu) context.getBean("menu");
         menu.showMenu();
     }
 
