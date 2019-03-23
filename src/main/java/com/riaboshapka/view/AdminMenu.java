@@ -223,10 +223,10 @@ public class AdminMenu {
         Client clientForModifiedOrder = null;
         showAllClients();
         System.out.println("Enter client's ID for modify:");
-        long clientId = readLongId();
+        long clientID = readLongId();
         for (Client client : clientService.getAllClients()) {
             long clientTempId = client.getId();
-            if (clientTempId == clientId) {
+            if (clientTempId == clientID) {
                 clientForModifiedOrder = client;
             }
         }
@@ -239,13 +239,13 @@ public class AdminMenu {
         long productId;
         boolean exitFromWhile = true;
         while (exitFromWhile) {
-            System.out.println("Enter product's ID for add into the new order or \"-1\"-for exit)");
             productId = readLongId();
             if (productId != -1) {
                 for (Product product : productService.getAllProducts()) {
                     long tempProductId = product.getId();
                     if (tempProductId == productId) {
                         listProducts.add(product);
+                        return listProducts;
                     }
                 }
             } else {
