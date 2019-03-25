@@ -11,6 +11,7 @@
     <context:component-scan base-package="com.riaboshapka.controllers"/>
 
     <bean id="clientDao" class="com.riaboshapka.dao.impl.ClientDBDao"/>
+    <!--<bean id="clientDao" class="com.riaboshapka.dao.impl.ClientsEntityManagerDao"/>-->
 
     <bean id="validationService" class="com.riaboshapka.validators.impl.ValidationServiceImpl">
         <!--<constructor-arg name="clientDao" ref="clientDao"/>-->
