@@ -1,15 +1,29 @@
 package com.riaboshapka.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+// table of DB
+@Table(name = "CLIENTS")
 public class Client {
 
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private long id; // unique identifier
+    @Column(name = "NAME")
     private String name;
     private String surname;
     private int age;
     private String email;
     private String phone;
+
+    public Client() {
+        //for Hibernate
+    }
 
     public Client(String name, String surname, String phone) {
         this.name = name;

@@ -16,6 +16,10 @@
         <constructor-arg name="in" ref="reader"/>
     </bean>
 
+    <!--<bean id="clientDao" class="com.riaboshapka.dao.impl.ClientsEntityManagerDao">-->
+        <!--<constructor-arg ref="clEN"/>-->
+    <!--</bean>-->
+
     <bean id="clientDao" class="com.riaboshapka.dao.impl.ClientDBDao"/>
 
     <bean id="productDao" class="com.riaboshapka.dao.impl.ProductDBDao"/>
@@ -28,6 +32,7 @@
 
     <bean id="clientService" class="com.riaboshapka.services.impl.ClientServiceImpl">
         <constructor-arg name="clientDBDao" ref="clientDao"/>
+        <!--<constructor-arg name="clientEMDao" ref="clientDao"/>-->
         <constructor-arg name="validationService" ref="validationService"/>
     </bean>
 
