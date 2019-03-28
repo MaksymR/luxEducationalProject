@@ -44,7 +44,7 @@ public class ModifyClientServlet extends HttpServlet {
             ValidationService validationService = new ValidationServiceImpl();
             ClientService clientService = new ClientServiceImpl(clientDBDao, validationService);
 
-            // modify an existing client through data from site
+            // modify an existing client through data from the site
             clientService.modifyClient(Long.parseLong(clientID),
                     clientsName,
                     clientsSurname,
@@ -52,7 +52,7 @@ public class ModifyClientServlet extends HttpServlet {
                     clientsPhone,
                     clientsEmail);
 
-            // get client for request argument of setAttribute()
+            // get the client for request argument of setAttribute()
             Client tempClient = clientDBDao.findClient(Long.parseLong(clientID));
             req.setAttribute("client", tempClient);
             doGet(req, resp);

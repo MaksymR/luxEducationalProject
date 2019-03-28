@@ -97,7 +97,7 @@ public class ProductDBDao implements ProductDao {
         return false;
     }
 
-    private Product findProduct(long productId) {
+    public Product findProduct(long productId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM PRODUCTS WHERE ID = ?")) {
             statement.setLong(1, productId);
