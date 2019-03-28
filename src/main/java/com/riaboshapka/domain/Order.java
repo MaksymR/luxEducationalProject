@@ -9,6 +9,9 @@ public class Order {
     private Client client;
     private List<Product> products;
 
+    public Order() {
+    }
+
     public Order(Client client, List<Product> products) {
         this.client = client;
         this.products = products;

@@ -5,5 +5,48 @@
 		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+    <!-- createClient servlet -->
+    <servlet>
+        <servlet-name>createClient</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.CreateClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createClient</servlet-name>
+        <url-pattern>/createClient</url-pattern>
+    </servlet-mapping>
+
+    <!-- modifyClient servlet -->
+    <servlet>
+        <servlet-name>modifyClient</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.ModifyClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>modifyClient</servlet-name>
+        <url-pattern>/modifyClient</url-pattern>
+    </servlet-mapping>
+
+    <!-- clientsList servlet -->
+    <servlet>
+        <servlet-name>clientsList</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.ClientsListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>clientsList</servlet-name>
+        <url-pattern>/clientsList</url-pattern>
+    </servlet-mapping>
+
+    <!-- deleteClient servlet -->
+    <servlet>
+        <servlet-name>deleteClient</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.DeleteClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteClient</servlet-name>
+        <url-pattern>/deleteClient</url-pattern>
+    </servlet-mapping>
 
 </web-app>
