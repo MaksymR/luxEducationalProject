@@ -51,7 +51,7 @@ public class CreateClientServlet extends HttpServlet {
                     clientsPhone,
                     clientsEmail);
 
-            // get client for request argument of setAttribute()
+            // get the client for request argument of setAttribute()
             List<Client> clientsList = clientService.getAllClients();
             Client tempClient = clientsList.get(clientsList.size() - 1);
             String tempClientsName = tempClient.getName();

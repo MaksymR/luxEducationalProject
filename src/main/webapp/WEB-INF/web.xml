@@ -49,4 +49,48 @@
         <url-pattern>/deleteClient</url-pattern>
     </servlet-mapping>
 
+    <!-- createProduct servlet -->
+    <servlet>
+        <servlet-name>createProduct</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productServlets.CreateProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createProduct</servlet-name>
+        <url-pattern>/createProduct</url-pattern>
+    </servlet-mapping>
+
+    <!-- modifyProduct servlet -->
+    <servlet>
+        <servlet-name>modifyProduct</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productServlets.ModifyProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>modifyProduct</servlet-name>
+        <url-pattern>/modifyProduct</url-pattern>
+    </servlet-mapping>
+
+    <!-- productsList servlet -->
+    <servlet>
+        <servlet-name>productsList</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productServlets.ProductListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>productsList</servlet-name>
+        <url-pattern>/productsList</url-pattern>
+    </servlet-mapping>
+
+    <!-- deleteProduct servlet -->
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productServlets.DeleteProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/deleteProduct</url-pattern>
+    </servlet-mapping>
+
 </web-app>
