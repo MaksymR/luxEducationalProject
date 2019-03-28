@@ -34,7 +34,7 @@ public interface OrderService {
     void modifyOrder(long id, Client clientForModifyOrder, List<Product> productsListForModifyOrder);
 
     /**
-     * delete order by id
+     * deleteProduct order by id
      *
      * @param id of order
      */

@@ -61,7 +61,7 @@ public interface ClientService {
 
 
     /**
-     * delete client
+     * deleteProduct client
      *
      * @param id of client
      */

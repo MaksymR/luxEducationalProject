@@ -195,7 +195,7 @@ public class AdminMenu {
         for (Product product : productService.getAllProducts()) {
             long tempId = product.getId();
             if (tempId == id) {
-                productService.delete(id);
+                productService.deleteProduct(id);
                 return;
             } else {
                 System.out.println("Choose correct Id of product for deleting");

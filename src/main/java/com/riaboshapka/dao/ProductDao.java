@@ -34,7 +34,7 @@ public interface ProductDao {
 
 
     /**
-     * delete product by Id
+     * deleteProduct product by Id
      *
      * @param id of product
      * @return true if product was deleted

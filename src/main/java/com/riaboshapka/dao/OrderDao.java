@@ -34,7 +34,7 @@ public interface OrderDao {
 
 
     /**
-     * delete order by Id
+     * deleteProduct order by Id
      *
      * @param orderId of order
      * @return true if order was deleted

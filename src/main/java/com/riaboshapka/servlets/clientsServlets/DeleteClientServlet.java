@@ -34,7 +34,7 @@ public class DeleteClientServlet extends HttpServlet {
             ValidationService validationService = new ValidationServiceImpl();
             ClientService clientService = new ClientServiceImpl(clientDBDao, validationService);
             Client clientForDelete = clientDBDao.findClient(Long.parseLong(clientID));
-            // delete an existing client
+            // deleteProduct an existing client
             clientService.deleteClient(Long.parseLong(clientID));
             req.setAttribute("client", clientForDelete);
             doGet(req, resp);

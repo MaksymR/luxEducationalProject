@@ -35,9 +35,9 @@ public interface ProductService {
 
 
     /**
-     * delete product
+     * deleteProduct product
      *
      * @param id of product
      */
-    void delete(long id);
+    void deleteProduct(long id);
 }

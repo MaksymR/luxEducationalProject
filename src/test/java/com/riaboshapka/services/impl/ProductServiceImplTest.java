@@ -86,7 +86,7 @@ public class ProductServiceImplTest {
         //GIVEN
         when(productDBDaoForMock.deleteProduct(id)).thenReturn(expectedBooleanResult);
         //WHEN
-        productServiceForTest.delete(id);
+        productServiceForTest.deleteProduct(id);
         //THEN
         verify(productDBDaoForMock, times(1)).getAllProducts();
     }
