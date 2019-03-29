@@ -28,11 +28,11 @@
     <div class="w3-card-4">
         <div class="w3-container w3-center w3-lime">
             <h2 class="w3-text-pink">Delete an existing product!!!</h2>
-            <h2 class="w3-text-black">Enter product's ID for deleting of the product</h2>
+            <h2 class="w3-text-black">Enter product's ID to delete the product</h2>
         </div>
 
         <form method="post" class="w3-selection w3-light-grey w3-padding">
-            <label>Product's Id:
+            <label>Product's ID:
                 <input type="text" name="id"
                        class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br/>
             </label>

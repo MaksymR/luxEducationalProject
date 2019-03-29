@@ -31,11 +31,11 @@
     <div class="w3-card-4">
         <div class="w3-container w3-center w3-lime">
             <h2 class="w3-text-pink">Delete an existing client!!!</h2>
-            <h2 class="w3-text-black">Enter client's ID for deleting of the client</h2>
+            <h2 class="w3-text-black">Enter client's ID to delete the client</h2>
         </div>
 
         <form method="post" class="w3-selection w3-light-grey w3-padding">
-            <label>Client's Id:
+            <label>Client's ID:
                 <input type="text" name="id"
                        class="w3-input w3-animate-input w3-border w3-round-large" style="width: 30%"><br/>
             </label>
@@ -50,6 +50,5 @@
 
     <button class="w3-btn w3-round-large" onclick="location.href='/'">Back to main</button>
 </div>
-
 </body>
 </html>
