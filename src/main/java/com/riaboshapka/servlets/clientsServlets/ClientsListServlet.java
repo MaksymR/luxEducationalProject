@@ -30,4 +30,5 @@ public class ClientsListServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher(CLIENTS_LIST_JSP);
         requestDispatcher.forward(req, resp);
     }
+
 }

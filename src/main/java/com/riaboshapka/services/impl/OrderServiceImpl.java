@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order(client, products);
         boolean result = orderDBDao.saveOrder(order);
         if (result) {
-            System.out.println("Product Saved: " + order);
+            System.out.println("Order Saved: " + order);
         }
     }
 
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
                 order.setProducts(productsListForModifyOrder);
                 boolean result = orderDBDao.modifyOrder(id, order);
                 if (result) {
-                    System.out.println("Order Saved: " + order);
+                    System.out.println("Order Modified: " + order);
                 }
             }
         }

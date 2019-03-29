@@ -66,6 +66,5 @@
     <button class="w3-btn w3-round-large w3-text-black" onclick="location.href='/clientMenu.html'">Back to client menu
     </button>
 </div>
-
 </body>
 </html>

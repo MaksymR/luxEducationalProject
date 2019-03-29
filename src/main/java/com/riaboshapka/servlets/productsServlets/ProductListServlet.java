@@ -1,4 +1,4 @@
-package com.riaboshapka.servlets.productServlets;
+package com.riaboshapka.servlets.productsServlets;
 
 import com.riaboshapka.dao.impl.ProductDBDao;
 import com.riaboshapka.domain.Product;

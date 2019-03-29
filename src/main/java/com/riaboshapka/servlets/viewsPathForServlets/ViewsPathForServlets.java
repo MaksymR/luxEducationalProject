@@ -14,4 +14,10 @@ public class ViewsPathForServlets {
     public static final String DELETE_PRODUCT_JSP = "views/productsViews/deleteProduct.jsp";
     public static final String MODIFY_PRODUCT_JSP = "views/productsViews/modifyProduct.jsp";
 
+    // paths of order's jsp-pages
+    public static final String ORDERS_LIST_JSP = "views/ordersViews/ordersList.jsp";
+    public static final String CREATE_ORDER_JSP = "views/ordersViews/createOrder.jsp";
+    public static final String DELETE_ORDER_JSP = "views/ordersViews/deleteOrder.jsp";
+    public static final String MODIFY_ORDER_JSP = "views/ordersViews/modifyOrder.jsp";
+
 }

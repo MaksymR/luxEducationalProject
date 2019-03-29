@@ -133,7 +133,7 @@ public class OrderDBDao implements OrderDao {
         return findProduct(productID);
     }
 
-    private Client findClient(long clientId) {
+    public Client findClient(long clientId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM CLIENTS WHERE ID = ?")) {
             statement.setLong(1, clientId);
@@ -153,7 +153,7 @@ public class OrderDBDao implements OrderDao {
         return null;
     }
 
-    private Product findProduct(long productId) {
+    public Product findProduct(long productId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM PRODUCTS WHERE ID = ?")) {
             statement.setLong(1, productId);

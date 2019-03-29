@@ -52,7 +52,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", client=" + client +
-                ", products=" + products +
+                ", product=" + products +
                 '}';
     }
 
