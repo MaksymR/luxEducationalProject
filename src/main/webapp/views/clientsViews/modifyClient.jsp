@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="styles/w3.css">
 </head>
 <body class="w3-light-grey">
-
 <div class="w3-container w3-padding">
     <%
         if (request.getAttribute("client") != null) {
@@ -72,6 +71,5 @@
     <button class="w3-btn w3-round-large w3-text-black" onclick="location.href='/clientMenu.html'">Back to client menu
     </button>
 </div>
-
 </body>
 </html>

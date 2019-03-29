@@ -1,13 +1,13 @@
 package com.riaboshapka.servlets.ordersServlets;
 
-import com.riaboshapka.dao.impl.ClientDBDao;
 import com.riaboshapka.dao.impl.OrderDBDao;
-import com.riaboshapka.dao.impl.ProductDBDao;
 import com.riaboshapka.domain.Client;
 import com.riaboshapka.domain.Order;
 import com.riaboshapka.domain.Product;
 import com.riaboshapka.services.OrderService;
 import com.riaboshapka.services.impl.OrderServiceImpl;
+import com.riaboshapka.servlets.iDForChecking.IDForChecking;
+import com.riaboshapka.servlets.iDForChecking.impl.IDForCheckingImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +21,8 @@ import java.util.List;
 import static com.riaboshapka.servlets.viewsPathForServlets.ViewsPathForServlets.*;
 
 public class CreateOrderServlet extends HttpServlet {
+
+    private IDForChecking idForChecking = new IDForCheckingImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,7 +38,6 @@ public class CreateOrderServlet extends HttpServlet {
         //check out if data from a browser are "empty"
         if (!clientsID.isEmpty() && !productsID.isEmpty()) {
 
-
             OrderDBDao orderDBDao = new OrderDBDao();
             OrderService orderService = new OrderServiceImpl(orderDBDao);
             Client clientForCreateOrder = orderDBDao.findClient(Long.parseLong(clientsID));
@@ -45,18 +46,8 @@ public class CreateOrderServlet extends HttpServlet {
             listProductForCreateOrder.add(productForCreateOrder);
 
             // prepare for checking client's and product's ID into BD
-            ClientDBDao clientDBDao = new ClientDBDao();
-            List<Client> clientList = clientDBDao.getAllClients();
-            List<Long> clientIDList = new ArrayList<>();
-            for (Client client : clientList) {
-                clientIDList.add(client.getId());
-            }
-            ProductDBDao productDBDao = new ProductDBDao();
-            List<Product> productList = productDBDao.getAllProducts();
-            List<Long> productIDList = new ArrayList<>();
-            for (Product product : productList) {
-                productIDList.add(product.getId());
-            }
+            List<Long> clientIDList = idForChecking.getClientIDForChecking();
+            List<Long> productIDList = idForChecking.getProductIDForChecking();
 
             // check client's and product's ID into BD
             if ((clientIDList.contains(Long.parseLong(clientsID)))

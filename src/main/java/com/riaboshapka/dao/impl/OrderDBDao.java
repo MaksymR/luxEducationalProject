@@ -104,7 +104,7 @@ public class OrderDBDao implements OrderDao {
         return false;
     }
 
-    private Order findOrder(long orderId) {
+    public Order findOrder(long orderId) {
         try (Connection connection = DriverManager.getConnection(DB_URL, LOGIN, PASSWORD);
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM ORDERS WHERE ID = ?")) {
             statement.setLong(1, orderId);
