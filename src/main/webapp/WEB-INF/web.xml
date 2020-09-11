@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!-- createClient servlet -->
+    <servlet>
+        <servlet-name>createClient</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.CreateClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createClient</servlet-name>
+        <url-pattern>/createClient</url-pattern>
+    </servlet-mapping>
+
+    <!-- modifyClient servlet -->
+    <servlet>
+        <servlet-name>modifyClient</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.ModifyClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>modifyClient</servlet-name>
+        <url-pattern>/modifyClient</url-pattern>
+    </servlet-mapping>
+
+    <!-- clientsList servlet -->
+    <servlet>
+        <servlet-name>clientsList</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.ClientsListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>clientsList</servlet-name>
+        <url-pattern>/clientsList</url-pattern>
+    </servlet-mapping>
+
+    <!-- deleteClient servlet -->
+    <servlet>
+        <servlet-name>deleteClient</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.clientsServlets.DeleteClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteClient</servlet-name>
+        <url-pattern>/deleteClient</url-pattern>
+    </servlet-mapping>
+
+    <!-- createProduct servlet -->
+    <servlet>
+        <servlet-name>createProduct</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productsServlets.CreateProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createProduct</servlet-name>
+        <url-pattern>/createProduct</url-pattern>
+    </servlet-mapping>
+
+    <!-- modifyProduct servlet -->
+    <servlet>
+        <servlet-name>modifyProduct</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productsServlets.ModifyProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>modifyProduct</servlet-name>
+        <url-pattern>/modifyProduct</url-pattern>
+    </servlet-mapping>
+
+    <!-- productsList servlet -->
+    <servlet>
+        <servlet-name>productsList</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productsServlets.ProductListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>productsList</servlet-name>
+        <url-pattern>/productsList</url-pattern>
+    </servlet-mapping>
+
+    <!-- deleteProduct servlet -->
+    <servlet>
+        <servlet-name>deleteProduct</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.productsServlets.DeleteProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteProduct</servlet-name>
+        <url-pattern>/deleteProduct</url-pattern>
+    </servlet-mapping>
+
+    <!-- createOrder servlet -->
+    <servlet>
+        <servlet-name>createOrder</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.ordersServlets.CreateOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createOrder</servlet-name>
+        <url-pattern>/createOrder</url-pattern>
+    </servlet-mapping>
+
+    <!-- modifyOrder servlet -->
+    <servlet>
+        <servlet-name>modifyOrder</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.ordersServlets.ModifyOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>modifyOrder</servlet-name>
+        <url-pattern>/modifyOrder</url-pattern>
+    </servlet-mapping>
+
+    <!-- ordersList servlet -->
+    <servlet>
+        <servlet-name>ordersList</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.ordersServlets.OrdersListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ordersList</servlet-name>
+        <url-pattern>/ordersList</url-pattern>
+    </servlet-mapping>
+
+    <!-- deleteOrder servlet -->
+    <servlet>
+        <servlet-name>deleteOrder</servlet-name>
+        <servlet-class>com.riaboshapka.servlets.ordersServlets.DeleteOrderServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>deleteOrder</servlet-name>
+        <url-pattern>/deleteOrder</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

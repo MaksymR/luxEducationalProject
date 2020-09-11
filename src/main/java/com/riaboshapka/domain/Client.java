@@ -1,13 +1,18 @@
 package com.riaboshapka.domain;
 
+import java.util.Objects;
+
 public class Client {
 
-    private long id;
+    private long id; // unique identifier
     private String name;
     private String surname;
     private int age;
     private String email;
     private String phone;
+
+    public Client() {
+    }
 
     public Client(String name, String surname, String phone) {
         this.name = name;
@@ -15,12 +20,21 @@ public class Client {
         this.phone = phone;
     }
 
-    public Client(String name, String surname, int age, String email, String phone) {
+    public Client(String name, String surname, int age, String phone, String email) {
         this.name = name;
         this.surname = surname;
         this.age = age;
-        this.email = email;
         this.phone = phone;
+        this.email = email;
+    }
+
+    public Client(long id, String name, String surname, int age, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
     }
 
     public long getId() {
@@ -78,8 +92,26 @@ public class Client {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id == client.id &&
+                age == client.age &&
+                Objects.equals(name, client.name) &&
+                Objects.equals(surname, client.surname) &&
+                Objects.equals(email, client.email) &&
+                Objects.equals(phone, client.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, age, email, phone);
     }
 }
